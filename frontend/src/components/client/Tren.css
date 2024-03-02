@@ -1,0 +1,22 @@
+.rectangulo {
+  width: 400px; /* Ancho del rectángulo */
+  height: 200px; /* Altura del rectángulo */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cuadrado_libre {
+  width: 25%; /* El 25% del ancho del rectángulo, para tener 4 por línea */
+  height: 50px; /* Altura del cuadrado */
+  background-color: #34db58; /* Color de fondo del cuadrado */
+  border: 1px solid #000e03; /* Borde del cuadrado */
+  box-sizing: border-box; /* Incluir borde en el tamaño total del cuadrado */
+}
+
+.cuadrado_ocupado {
+  width: 25%; /* El 25% del ancho del rectángulo, para tener 4 por línea */
+  height: 50px; /* Altura del cuadrado */
+  background-color: #db3434; /* Color de fondo del cuadrado */
+  border: 1px solid #0c0000; /* Borde del cuadrado */
+  box-sizing: border-box; /* Incluir borde en el tamaño total del cuadrado */
+}
