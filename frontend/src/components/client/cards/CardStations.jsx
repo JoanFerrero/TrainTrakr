@@ -13,15 +13,17 @@ const CardStations = ({station}) => {
   
   return (
     <>
-      <div className="row g-0 bg-light position-relative mx-2">
-        <div className="col-md-6 mb-md-0 p-md-4">
-          <img src="https://images.ctfassets.net/txbhe1wabmyx/1dcXeAwolNAngGDuglWeWi/af1087111417148113c2d7fb477d5fda/photo-1477959858617-67f85cf4f1df.jpg" className="w-100" alt="..." />
+      <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
+        <div className="rounded-lg h-64 overflow-hidden">
+          <img alt="content" className="object-cover object-center h-full w-full" src="https://media.revistaad.es/photos/60c225a79784346c97ddf38b/master/w_1600%2Cc_limit/259544.jpg" />
         </div>
-        <div className="col-md-6 p-4 ps-md-0">
-          <h5 className="mt-0">{station.name}</h5>
-          <p>{station.desc}</p>
-          <a className="stretched-link" onClick={() => addFiler(station.id)}>Ver Estacion</a>
-        </div>
+        <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{station.name}</h2>
+        <p className="text-base leading-relaxed mt-2">{station.desc}</p>
+        <a className="text-indigo-500 inline-flex items-center mt-3" onClick={() => addFiler(station.id)}>Ver Estacion
+          <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
       </div>
     </>
   )

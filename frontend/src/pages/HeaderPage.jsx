@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useContextHook } from "../hooks/useContextHook";
 import { useAuth } from "../hooks/useAuth";
 import TopBar from "../components/admin/dashboard/TopBar";
+import Footer from "../components/client/Footer";
 const HeaderPage = ({ children }) => {
   const { AuthState } = useContext(AuthContext);
   const location = useLocation();
@@ -32,6 +33,7 @@ const HeaderPage = ({ children }) => {
         <>
           <Header />
           {children}
+          <Footer />
         </>
       )}
     </>
