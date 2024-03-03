@@ -10,10 +10,15 @@ const ButtonFilters = () => {
   }
 
   const button = TripsState.station_filter === true ? (
-    <button class="btn btn-dark" onClick={() => removeFiler('')}>Borrar Filtro</button>
+    <button 
+      className="bg-green-50 focus:outline-none focus:shadow-outline border border-blue-900 rounded-full py-2 px-4 block appearance-none leading-normal ml-2"
+      onClick={() => removeFiler('')}
+    >
+      Borrar Filtros
+    </button>
   ) : (<></>);
   return (
-    <div className="col-md-6 mt-3 mb-3 mr-3 ml-3 pr-3 mx-2">
+    <div className="m-4">
       {button}
     </div>
   )

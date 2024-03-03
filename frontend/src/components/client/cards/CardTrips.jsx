@@ -19,15 +19,20 @@ const CardTrips = ({trip}) => {
 
   return (
     <>
-      <div className="row g-0 bg-light position-relative mx-2">
-        <div className="col-md-6 mb-md-0 p-md-4">
-          <img src="https://images.ctfassets.net/txbhe1wabmyx/1dcXeAwolNAngGDuglWeWi/af1087111417148113c2d7fb477d5fda/photo-1477959858617-67f85cf4f1df.jpg" className="w-100" alt="..." />
+      <div className="py-8 flex flex-wrap md:flex-nowrap">
+        <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col sm:w-64 min-[532px]:w-64 min-[409px]:w-44 min-[300px]:w-28">
+          <span className="font-semibold title-font text-gray-700">Viaje</span>
+          <span className="mt-1 text-gray-500 text-sm">{trip.date}</span>
         </div>
-        <div className="col-md-6 p-4 ps-md-0">
-          <h5 className="mt-0">Salida: {exit.name}</h5>
-          <h5 className="mt-0">Llegada: {arrival.name}</h5>
-          <p>Dia: {trip.date} - Duracion: {trip.time} h</p>
-          <a className="stretched-link" onClick={() => redirects.detail(trip.id)}>Ver sillas disponibles</a>
+        <div className="md:flex-grow">
+          <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">{exit.name} - {arrival.name}</h2>
+          <p className="leading-relaxed">Duracion {trip.time} h</p>
+          <a className="text-indigo-500 inline-flex items-center mt-4" onClick={() => redirects.detail(trip.id)}>Saber mas
+            <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </>
