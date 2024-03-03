@@ -7,28 +7,11 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-xl-10 col-lg-12 col-md-9">
-            <div className="card o-hidden border-0 shadow-lg my-5">
-              <div className="card-body p-0">
-                <div className="row">
-                  <img src="https://img.freepik.com/vector-premium/icono-tren_609277-3633.jpg" className="col-lg-6 d-none d-lg-block" />
-                  <div className="col-lg-6">
-                    <div className="p-5">
-                      <div className="text-center">
-                        <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                      </div>
-                      <FormLogin sendData={(data) => useLoginUser(data)}/>
-                      <hr />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="flex w-full items-start justify-center bg-[url('https://tailframes.com/images/squares-bg.webp')] bg-cover bg-center bg-no-repeat">
+        <div className="m-auto flex max-w-screen-ms grow flex-col items-center justify-start gap-6 px-3 py-20 md:gap-12 md:px-12 lg:max-w-7xl lg:px-24">
+          <FormLogin sendData={(data) => useLoginUser(data)}/>
         </div>
-      </div>
+      </section>
     </>
   )
 }
