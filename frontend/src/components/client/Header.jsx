@@ -48,9 +48,6 @@ const Header = () => {
   const isUser = AuthState.isAuth ? (
     <>
       <div className="relative">
-        {/* <button onClick={toggleMenuU} className="focus:outline-none">
-          <img src="https://images.vexels.com/media/users/3/147102/isolated/preview/082213cb0f9eabb7e6715f59ef7d322a-icono-de-perfil-de-instagram.png" alt="Avatar" className="w-8 h-8 rounded-full" />
-        </button> */}
         <div onClick={toggleMenuU} className="relative box-content flex items-center justify-center overflow-hidden rounded-full size-10 bg-white">
           <img src="https://images.vexels.com/media/users/3/147102/isolated/preview/082213cb0f9eabb7e6715f59ef7d322a-icono-de-perfil-de-instagram.png" alt="" className="aspect-square" />
         </div>
@@ -96,7 +93,7 @@ const Header = () => {
               className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Trips</span>
             </a>
-            <a type="button" 
+            <a type="button" onClick={() => redirects.home()}
               className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Contact</span>
             </a>
@@ -104,10 +101,10 @@ const Header = () => {
           {isUser}
         </div>
         {isOpen && (
-          <nav className="sm:hidden mt-2">
-            <a href="#" className="block py-2 px-4 text-white hover:bg-gray-700">Home</a>
-            <a href="#" className="block py-2 px-4 text-white hover:bg-gray-700">Trips</a>
-            <a href="#" className="block py-2 px-4 text-white hover:bg-gray-700">Contacto</a>
+          <nav className="sm:hidden mt-2 overflow-hidden z-10" >
+            <a onClick={() => redirects.home()} className="block py-2 px-4 text-white hover:bg-gray-700">Home</a>
+            <a onClick={() => redirects.trips()} className="block py-2 px-4 text-white hover:bg-gray-700">Trips</a>
+            <a onClick={() => redirects.home()} className="block py-2 px-4 text-white hover:bg-gray-700">Contacto</a>
           </nav>
         )}
       </header>
