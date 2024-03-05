@@ -16,6 +16,7 @@ const ListStations = ({ itemsPag = 3}) => {
     const startIndex = currentPage * itemsPag;
     const endIndex = Math.min(startIndex + itemsPag, StationsState.stations.length);
     const newItems = StationsState.stations.slice(itemsToShow.length, endIndex);
+    setCurrentPage(currentPage + 1)
     setItemsToShow([...itemsToShow, ...newItems]);
   };
 
@@ -36,7 +37,11 @@ const ListStations = ({ itemsPag = 3}) => {
               </div>
             </div>
           </section>
-          <button onClick={handleShowMore}>Mostrar Más</button>
+          <div className="flex justify-center items-center">
+                {StationsState.stations.length !== itemsToShow.length ? (
+                  <button className="bg-blue-500 text-white p-4 rounded-lg cursor-pointer" onClick={handleShowMore}>Mostrar Más</button>
+                ): null }
+              </div>
         </>
       ) : (
         <h1>No existen Estaciones</h1>
