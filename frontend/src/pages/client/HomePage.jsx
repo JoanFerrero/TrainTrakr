@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <ListStations />
+      <ListStations itemsPag={3}/>
     </>
   )
 }
