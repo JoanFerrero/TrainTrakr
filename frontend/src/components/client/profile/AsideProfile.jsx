@@ -1,33 +1,15 @@
 const AsideProfile = ({name, setPage}) => {
   return (
     <>
-      <div>
-        <div>
-          <h6 className="p-1">{name}</h6>
-          <ul className="list-group ul">
-            <li className="li list-group-item list-group-item-action mb-2 rounded" onClick={() => setPage('profile')}>
-              <a>
-                <span className="fa fa-circle pr-1" id="red"></span>Perfil
-              </a>
-            </li>
-            <li className="li list-group-item list-group-item-action mb-2 rounded" onClick={() => setPage('notifications')}>
-              <a>
-                <span className="fa fa-circle pr-1" id="red"></span>Notificaciones
-              </a>
-            </li>
-            <li className="li list-group-item list-group-item-action mb-2 rounded" onClick={() => setPage('bookings')}>
-              <a>
-                <span className="fa fa-circle pr-1" id="red"></span>Reservas
-              </a>
-            </li>
-            <li className="li list-group-item list-group-item-action mb-2 rounded" onClick={() => setPage('incidents')}>
-              <a>
-                <span className="fa fa-circle pr-1" id="red"></span>Incidencias
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <aside className="w-64 text-black-500 m-8">
+        <ul>
+          <li className="py-2 px-4 font-black items-center">{name}</li>
+          <li className="py-2 px-4" onClick={() => setPage('profile')}>Mis datos</li>
+          <li className="py-2 px-4" onClick={() => setPage('notifications')}>Mis notificaciones</li>
+          <li className="py-2 px-4" onClick={() => setPage('bookings')}>Mis viajes</li>
+          <li className="py-2 px-4" onClick={() => setPage('incidents')}>Mis incidencias</li>
+        </ul>
+      </aside>
     </>
   )
 }

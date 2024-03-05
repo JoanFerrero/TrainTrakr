@@ -1,4 +1,4 @@
-const Bookings = ({rent, setPageData}) => {
+const Bookings = ({rent, setPageData, setTrip}) => {
   const setIncident = () => {
     setPageData('formincidents', rent)
   }
@@ -16,6 +16,7 @@ const Bookings = ({rent, setPageData}) => {
             €
           </li>
           <li className="list-group-item" onClick={()=> setIncident()}>Notificar incidencia</li>
+          <li className="list-group-item" onClick={()=> setTrip(rent)}>Generar QR</li>
         </ul>
       </div>
     </>

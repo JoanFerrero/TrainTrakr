@@ -58,7 +58,7 @@ const Header = () => {
           <div className="fixed right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
             <a onClick={() => redirects.profile()}className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Perfil</a>
             {AuthState.isAdmin ? <a onClick={() => redirects.dashboard()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dashboard</a> : ''}
-            <a nClick={() => redirects.profile()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Notificaciones</a>
+            <a onClick={() => redirects.profile()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Notificaciones</a>
             <a onClick={() => logout()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Log Out</a>
           </div>
         )}
