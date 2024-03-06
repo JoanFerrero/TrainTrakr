@@ -8,6 +8,8 @@ class Station(models.Model):
     desc = models.CharField(max_length=100)
     image = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
+    latitud = models.CharField(max_length=100)
+    longitud = models.CharField(max_length=100)
 
     def __str__(self):
         return str(self.id)

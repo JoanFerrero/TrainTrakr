@@ -1,7 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import CardStations from '../cards/CardStations'
 import { StationsContext } from "../../../context/stations/StationsProvider";
-import Pagination from "../../utils/Pagination";
 
 const ListStations = ({ itemsPag = 3}) => {
   const { StationsState } = useContext(StationsContext);
@@ -38,10 +37,10 @@ const ListStations = ({ itemsPag = 3}) => {
             </div>
           </section>
           <div className="flex justify-center items-center">
-                {StationsState.stations.length !== itemsToShow.length ? (
-                  <button className="bg-blue-500 text-white p-4 rounded-lg cursor-pointer" onClick={handleShowMore}>Mostrar Más</button>
-                ): null }
-              </div>
+            {StationsState.stations.length !== itemsToShow.length ? (
+              <button className="bg-blue-500 text-white p-4 rounded-lg cursor-pointer" onClick={handleShowMore}>Mostrar Más</button>
+            ): null }
+          </div>
         </>
       ) : (
         <h1>No existen Estaciones</h1>

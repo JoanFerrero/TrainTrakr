@@ -5,7 +5,7 @@ from random import randint
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Station
-        fields = ['id', 'slug', 'name', 'desc', 'image', 'status']
+        fields = ['id', 'slug', 'name', 'desc', 'image', 'status', 'latitud', 'longitud']
 
     def to_station(self, instance):
         return {
@@ -15,6 +15,8 @@ class StationSerializer(serializers.ModelSerializer):
             "desc": instance.desc,
             "image": instance.image,
             "status": instance.status,
+            "latitud": instance.latitud,
+            "longitud": instance.longitud,
         }
     
 class TrainSerializer(serializers.ModelSerializer):

@@ -11,6 +11,7 @@ export const useProfile = () => {
   }, [])
 
   const useSelectTrip = useCallback(data => {
+    console.log(data)
     setTrip(data)
   }, [])
 
