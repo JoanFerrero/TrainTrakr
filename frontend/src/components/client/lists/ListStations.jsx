@@ -36,7 +36,7 @@ const ListStations = ({ itemsPag = 3}) => {
               </div>
             </div>
           </section>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mb-40">
             {StationsState.stations.length !== itemsToShow.length ? (
               <button className="bg-blue-500 text-white p-4 rounded-lg cursor-pointer" onClick={handleShowMore}>Mostrar Más</button>
             ): null }

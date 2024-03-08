@@ -12,6 +12,7 @@ import Notification from "../notifications/Notification";
 import { useNotification } from "../../../hooks/useNotification";
 import { NotificationsContext } from "../../../context/Notifications/NotificationsProvider"
 import QRCodeTrip from "./QRcode";
+import AsideProfileMovile from "./AsideProfileMovile";
 
 const ProfileUser = () => {
   const { page, rent, trip, useChangePage, useChangePageData, useSelectTrip } = useProfile();
@@ -24,16 +25,19 @@ const ProfileUser = () => {
     useSetRent();
     useSetIncidents();
   }, [])
-  
+  //min-[1220px]:w-[60rem] min-[1220px]:h-[35rem]
   return (
     <>
       <section className="w-full bg-[url('https://tailframes.com/images/squares-bg.webp')]">
-        <div className="flex">
-          <div className="w-full min-[1220px]:w-1/3 overflow-hidden">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/3 w-ful hidden md:block">
             <AsideProfile setPage={useChangePage} name={AuthState.user.name} user={AuthState.user}/>
           </div>
-          <div className="hidden  min-[1220px]:block w-2/3 h-screen overflow-hidden"> 
-            <div className="w-[50rem] h-96 bg-gray-800 p-8 rounded-lg shadow-md overflow-y-auto mt-5">
+          <div className="md:w-1/3 w-ful md:hidden">
+            <AsideProfileMovile setPage={useChangePage} name={AuthState.user.name} user={AuthState.user}/>
+          </div>
+          <div className="md:w-2/3 w-full overflow-hidden">
+            <div className="xl:w-[60rem] xl:h-[35rem] lg:w-[40rem] lg:h-[30rem] bg-gray-800 p-8 rounded-lg shadow-md overflow-y-auto mt-5 m-8">
               {page === 'bookings' ? (
                 <>
                   {rents !== undefined && rents.length > 0 && trip.length === 0 ? (
