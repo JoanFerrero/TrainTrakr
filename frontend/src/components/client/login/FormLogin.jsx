@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import { signInWithPopup } from "firebase/auth";
+import { auth, providerGitHub, providerGoogle } from "../../../services/FirebaseService";
 
 const FormLogin = ({sendData}) => {
 
@@ -10,6 +12,22 @@ const FormLogin = ({sendData}) => {
   });
 
   const { register, handleSubmit, formState: {errors}} = useForm({resolver: yupResolver(validators)});
+
+  const getGoogleLog = () => {
+    signInWithPopup(auth, providerGoogle)
+      .then((data) => {
+        data.user.type_register = "google";
+        sendData(data.user)
+      })
+  }
+
+  const getGithubLog = () => {
+    signInWithPopup(auth, providerGitHub)
+      .then((data) => {
+        data.user.type_register = "github";
+        sendData(data.user)
+      })
+  }
 
   return (
     <>
@@ -62,11 +80,11 @@ const FormLogin = ({sendData}) => {
           </button>
         </div>
         <div className="flex gap-4 items-center justify-center">
-          <button type="button"
+          <button type="button" onClick={getGithubLog}
             className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed bg-blue-700 stroke-white px-6 text-white hover:bg-blue-950 h-[42px] min-w-[42px] gap-2 disabled:bg-slate-100 disabled:stroke-slate-400 disabled:text-slate-400 disabled:hover:bg-slate-100">
             <span>GitHub</span>
           </button>
-          <button type="button"
+          <button type="button" onClick={getGoogleLog}
             className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed bg-blue-700 stroke-white px-6 text-white hover:bg-blue-950 h-[42px] min-w-[42px] gap-2 disabled:bg-slate-100 disabled:stroke-slate-400 disabled:text-slate-400 disabled:hover:bg-slate-100">
             <span>Google</span>
           </button>

@@ -32,11 +32,33 @@ export const useAuth = () => {
   }
 
   const useLoginUser = useCallback(data => {
-    const user = {
-      "email": data.email,
-      "password": data.password
+    let userData = {};
+    if (data.type_register === "google" || data.type_register === "github") {
+      if( data.type_register === "github") {
+        userData = {
+          "email": data.providerData[0].email,
+          "username": data.displayName,
+          "password": "0",
+          "type_register": data.type_register,
+        }
+      } else {
+        userData = {
+          "email": data.email,
+          "username": data.displayName,
+          "password": "0",
+          "type_register": data.type_register,
+        }
+      }
+    } else {
+      userData = {
+        "email": data.email,
+        "username": data.displayName,
+        "password": data.password,
+        "type_register": data.type_register,
+      }
     }
-    AuthService.loginUser(user)
+    console.log(userData)
+    AuthService.loginUser(userData)
       .then(({ data, status }) => {
         if (status === 200) {
           localStorage.setItem('token', data.token);
@@ -54,32 +76,47 @@ export const useAuth = () => {
   }, [])
 
   const useRegisterUser = useCallback(data => {
-    console.log(data)
-    if(data.password1 === data.password2) {
-      const user = {
-        "username": data.username,
-        "email": data.email,
-        "password": data.password
+    let userData = {};
+    if (data.type_register === "google" || data.type_register === "github") {
+      if( data.type_register === "github") {
+        userData = {
+          "email": data.providerData[0].email,
+          "username": data.displayName,
+          "password": "0",
+          "type_register": data.type_register,
+        }
+      } else {
+        userData = {
+          "email": data.email,
+          "username": data.displayName,
+          "password": "0",
+          "type_register": data.type_register,
+        }
       }
-      AuthService.registerUser(user)
-        .then(({ data, status}) => {
-          if (status === 200) {
-            localStorage.setItem('token', data.token);
-            dispathCustom("SET_TOKEN", data.token, "auth");
-            dispathCustom("SET_USER", data.user, "auth");
-            dispathCustom("SET_IS_AUTH", true, "auth");
-            dispathCustom("SET_IS_ADMIN", data.user.type === 'admin', "auth");
-            toast.success('Registro correcto!!');
-            navigate('/');
-          }
-      }).catch(e => {
-        console.error(e);
-        useLogOutUser();
-        toast.error('Datos incorrecto!');
-      });
     } else {
-      toast.error('Contraseña incorrecta!');
+      userData = {
+        "email": data.email,
+        "username": data.displayName,
+        "password": data.password,
+        "type_register": data.type_register,
+      }
     }
+    AuthService.registerUser(userData)
+      .then(({ data, status}) => {
+        if (status === 200) {
+          //localStorage.setItem('token', data.token);
+          //dispathCustom("SET_TOKEN", data.token, "auth");
+          //dispathCustom("SET_USER", data.user, "auth");
+          //dispathCustom("SET_IS_AUTH", true, "auth");
+          //dispathCustom("SET_IS_ADMIN", data.user.type === 'admin', "auth");
+          toast.success('Registro correcto!!');
+          navigate('/login');
+        }
+    }).catch(e => {
+      console.error(e);
+      useLogOutUser();
+      toast.error('Datos incorrecto!');
+    });
   }, [])
 
   const useLogOutUser = useCallback(data => {
