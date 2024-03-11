@@ -10,6 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         username = context['username']
         email = context['email']
         password = context['password']
+        type_register = context['type_register']
 
         username_exist = len(User.objects.filter(username=username))
         email_exist = len(User.objects.filter(email=email))
@@ -17,18 +18,47 @@ class UserSerializer(serializers.ModelSerializer):
         if (email_exist > 0 or username_exist > 0):
             raise serializers.ValidationError('*Username or email already exists.')
 
-        user = User.objects.create_user(email=email, username=username, password=password)
+        user = User.objects.create_user(email=email, username=username, password=password, type_register=type_register)
         
         return {
             'user': {
                 'id': user.id,
                 'username': user.username,
                 'email': user.email,
-                'type': user.type
+                'type': user.type,
+                'type_register': user.type_register
             },
             'token': user.token,
             'ref_token': user.ref_token,
         }
+    
+    def register_firebase(context):
+
+        username = context['username']
+        email = context['email']
+        type_register = context['type_register']
+
+        username_exist = len(User.objects.filter(username=username))
+        email_exist = len(User.objects.filter(email=email))
+
+        if (email_exist > 0 or username_exist > 0):
+            raise serializers.ValidationError('*Username or email already exists.')
+
+        user = User.objects.create_user_firebase(email=email, username=username, type_register=type_register)
+        
+        return {
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'type': user.type,
+                'type_register': user.type_register
+            },
+            'token': user.token,
+            'ref_token': user.ref_token,
+        }
+
+
     
     def login(context):
         email = context['email']

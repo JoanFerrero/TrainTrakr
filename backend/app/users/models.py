@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 import jwt
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password):
-        user = self.model(email=self.normalize_email(email), username=username)
+    def create_user(self, username, email, password, type_register):
+        user = self.model(email=self.normalize_email(email), username=username, type_register=type_register)
         user.set_password(password)
         user.save()
         return user
@@ -17,13 +17,19 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
+    
+    def create_user_firebase(self, username, email, type_register):
+        user = self.model(email=self.normalize_email(email), username=username, type_register=type_register)
+        user.save()
+        return user
 
 class User(AbstractBaseUser, PermissionsMixin):
     uuid = models.CharField('uuid', max_length=36, unique=True, editable=False, null=False)
     username = models.CharField('username', max_length=30, unique=True, null=False)
     email = models.EmailField('email', unique=True)
     type = models.CharField('type', max_length=10, null=False, default='client')
-
+    type_register = models.CharField('type_register', max_length=30, unique=True, null=False)
+    
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
 

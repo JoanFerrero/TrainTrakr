@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser 
 from .serializers import UserSerializer, ProfileSerializer
 from rest_framework.permissions import (AllowAny, IsAuthenticatedOrReadOnly, IsAuthenticated, IsAdminUser)
+from rest_framework.exceptions import NotFound
 
 
 # Create your views here.
@@ -13,14 +14,46 @@ class UserView(viewsets.GenericViewSet):
     def register(self, request):
         user = JSONParser().parse(request)
 
-        serializer = UserSerializer.register(user)
+        if user['email'] is None:
+            raise NotFound("Email is requered!")
+        
+        if user['username'] is None:
+            raise NotFound("username is requered!")
+        
+        if user['type_register'] == "email":
+            if user['password'] is None:
+                raise NotFound("Password is requered!")
+            
+        serializer_context = {
+            'email': user['email'],
+            'password': user['password'],
+            'username': user['username'],
+            'type_register': user['type_register']
+        }
+        
+        if user['password'] == "0" and user['type_register'] != "email":
+            serializer = UserSerializer.register_firebase(serializer_context)
+            ProfileSerializer.create(context=serializer['user'])
+            return Response("Register Firebase")
+
+        serializer = UserSerializer.register(serializer_context)
 
         ProfileSerializer.create(context=serializer['user'])
 
-        return Response(serializer)
+        return Response("Register Email")
     
     def login(self, request):
         user = JSONParser().parse(request)
+
+        if user['type_register'] == "email":
+            if user['password'] is None:
+                raise NotFound("Password is requered!")
+            
+        if user['email'] is None:
+            raise NotFound("Email is requered!")
+        
+        if user['password'] == "0" and user['type_register'] != "email":
+            return Response('Login Firebase')
 
         serializer = UserSerializer.login(user)
 
