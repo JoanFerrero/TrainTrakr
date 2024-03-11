@@ -52,8 +52,16 @@ class UserView(viewsets.GenericViewSet):
         if user['email'] is None:
             raise NotFound("Email is requered!")
         
-        if user['password'] == "0" and user['type_register'] != "email":
-            return Response('Login Firebase')
+        serializer_context = {
+            'email': user['email'],
+            'password': user['password'],
+            'type_register': user['type_register']
+        }
+        
+        if user['password'] == "0":
+            if user['type_register'] == "google" or user['type_register'] == "github":
+                serializer = UserSerializer.login_firebase(serializer_context)
+                return Response(serializer)
 
         serializer = UserSerializer.login(user)
 

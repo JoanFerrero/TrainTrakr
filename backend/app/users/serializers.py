@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, exceptions
 from .models import User, Profile
 
 class UserSerializer(serializers.ModelSerializer):
@@ -63,6 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
     def login(context):
         email = context['email']
         password = context['password']
+        type_register = context['type_register']
 
         try:
             user = User.objects.get(email=email)
@@ -72,6 +73,39 @@ class UserSerializer(serializers.ModelSerializer):
         if not user.check_password(password):
             raise serializers.ValidationError('*Wrong email or password.')
         
+
+        return {
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'type': user.type
+            },
+            'chairs': {},
+            'token': user.token,
+            'ref_token': user.ref_token,
+        }
+    
+    def login_firebase(context):
+        email = context['email']
+        type_register = context['type_register']
+        if email is None:
+            raise serializers.ValidationError(
+                'An email is required to log in.'
+            )
+
+        if type_register is None:
+            raise serializers.ValidationError(
+                'An type_register is required to log in.'
+            )
+
+        try:
+            user = User.objects.get(email=email)
+
+        except:
+            raise serializers.ValidationError(
+                'Email or password incorrects.'
+            )
 
         return {
             'user': {
