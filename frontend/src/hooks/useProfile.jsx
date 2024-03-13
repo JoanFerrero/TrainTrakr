@@ -6,19 +6,18 @@ export const useProfile = () => {
   const [trip, setTrip] = useState([]);
 
   const useChangePage = useCallback(data => {
-    setPage(data)
-    setTrip([])
+    setPage(data);
+    setTrip([]);
   }, [])
 
   const useSelectTrip = useCallback(data => {
-    console.log(data)
-    setTrip(data)
+    setTrip(data);
   }, [])
 
   const useChangePageData = useCallback((page, data) => {
-    setPage(page)
-    setRent(data)
-    setTrip([])
+    setPage(page);
+    setRent(data);
+    setTrip([]);
   }, [])
   
   return { useChangePage,useChangePageData, useSelectTrip, page, rent, trip }

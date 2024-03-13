@@ -41,9 +41,9 @@ const ProfileUser = () => {
                 <>
                   {rents !== undefined && rents.length > 0 && trip.length === 0 ? (
                     <>
+                      <h2 className="text-xl font-bold mb-4 text-white">Mis Viajes</h2>
                       {rents.map((rent) => (
                         <>
-                          <h2 className="text-xl font-bold mb-4 text-white">Mis Viajes</h2>
                           <Bookings rent={rent} key={rent.id} setPageData={(page, data) => useChangePageData(page, data)} setTrip={(data) => useSelectTrip(data)} />
                         </>
                       ))}
@@ -52,7 +52,7 @@ const ProfileUser = () => {
                     <>
                       {trip.length !== 0 ? (
                         <>
-                          <h2 className="text-xl font-bold mb-4 text-white">Viajes</h2>
+                          <h2 className="text-xl font-bold mb-4 text-white">Viaje</h2>
                           <Bookings rent={trip} key={trip.id} setPageData={(page, data) => useChangePageData(page, data)} setTrip={(data) => useSelectTrip(data)} />
                           <QRCodeTrip trip={trip}/>
                         </>

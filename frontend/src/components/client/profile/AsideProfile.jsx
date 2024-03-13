@@ -4,12 +4,8 @@ const AsideProfile = ({user, setPage}) => {
       <aside className="w-64 text-black-500 m-8">
         <div className="w-full  bg-gray-800 p-8 rounded-lg shadow-md">
           <h2 className="text-xl font-bold mb-2 text-white">Perfil de Usuario</h2>
-          <div className="mb-4">
+          <div className="">
             <span className="text-gray-200">{user.username}</span>
-          </div>
-          <div className="mb-4">
-            <label className="block text-gray-300 font-bold mb-2" htmlFor="correo">Correo electrónico:</label>
-            <span className="text-gray-200">{user.email}</span>
           </div>
         </div>
         <ul>

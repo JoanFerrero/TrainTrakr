@@ -1,4 +1,4 @@
-import {useContext, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import CardTrips from '../cards/CardTrips';
 import { TripsContext } from "../../../context/trips/TripsProvider";
 import Button from "../filters/ButtonFilers"
@@ -7,19 +7,16 @@ const ListTrips = ({ elementsPag = 4}) => {
 
   const { TripsState } = useContext(TripsContext);
 
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Calcula el índice de inicio y fin para los elementos que se mostrarán en la página actual
   const startIndex = (currentPage - 1) * elementsPag;
   const endIndex = Math.min(startIndex + elementsPag, TripsState.trips.length);
 
   const trips = TripsState.trips.slice(startIndex, endIndex);
-  console.log(trips)
-
   return (
     <>
       <Button />
