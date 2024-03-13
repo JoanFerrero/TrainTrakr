@@ -25,7 +25,6 @@ const ProfileUser = () => {
     useSetRent();
     useSetIncidents();
   }, [])
-  //min-[1220px]:w-[60rem] min-[1220px]:h-[35rem]
   return (
     <>
       <section className="w-full bg-[url('https://tailframes.com/images/squares-bg.webp')]">
@@ -37,7 +36,7 @@ const ProfileUser = () => {
             <AsideProfileMovile setPage={useChangePage} name={AuthState.user.name} user={AuthState.user}/>
           </div>
           <div className="md:w-2/3 w-full overflow-hidden">
-            <div className="xl:w-[60rem] xl:h-[35rem] lg:w-[40rem] lg:h-[30rem] bg-gray-800 p-8 rounded-lg shadow-md overflow-y-auto mt-5 m-8">
+            <div className="2xl:w-[60rem] xl:w-[40rem] xl:h-[35rem] lg:w-[40rem] lg:h-[35rem] bg-gray-800 p-8 rounded-lg shadow-md overflow-y-auto mt-5 m-8">
               {page === 'bookings' ? (
                 <>
                   {rents !== undefined && rents.length > 0 && trip.length === 0 ? (
@@ -57,39 +56,41 @@ const ProfileUser = () => {
                           <Bookings rent={trip} key={trip.id} setPageData={(page, data) => useChangePageData(page, data)} setTrip={(data) => useSelectTrip(data)} />
                           <QRCodeTrip trip={trip}/>
                         </>
-                      ) : (
-                        <h1>No existen Viajes</h1>
-                      ) }
+                      ) : <h2 className="text-xl font-bold mb-4 text-white">No existen Viajes</h2>}
                     </>
                   )}
                 </>
               ) : null}
               {page === 'incidents' ? (
                 <>
-                  <h2 className="text-xl font-bold mb-4 text-white">Mis Incidencias</h2>
-                  <div className="row">
-                    <div className="col-sm">
-                      <h3 className="text-sm font-bold mb-4 text-white">Trenes</h3>
-                      {incidentsT !== undefined && incidentsT.length > 0 ? (
-                        <>
-                          {incidentsT.map((incident) => (
-                            <Incidents incident={incident} key={incident.id}/>
-                          ))}
-                        </>
-                      ) : null }
-                    </div>
-                    <div className="col-sm">
-                    <h3 className="text-sm font-bold mb-4 text-white">Sillas</h3>
+                  {incidentsT !== undefined && incidentsT.length > 0 && incidentsC !== undefined && incidentsC.length > 0 ? (
+                    <>
+                      <h2 className="text-xl font-bold mb-4 text-white">Mis Incidencias</h2>
+                      <div className="row">
+                        <div className="col-sm">
+                          <h3 className="text-sm font-bold mb-4 text-white">Trenes</h3>
+                          {incidentsT !== undefined && incidentsT.length > 0 ? (
+                            <>
+                              {incidentsT.map((incident) => (
+                                <Incidents incident={incident} key={incident.id}/>
+                              ))}
+                            </>
+                          ) : null }
+                        </div>
+                        <div className="col-sm">
+                        <h3 className="text-sm font-bold mb-4 text-white">Sillas</h3>
 
-                      {incidentsC !== undefined && incidentsC.length > 0 ? (
-                        <>
-                          {incidentsC.map((incident) => (
-                            <Incidents incident={incident} key={incident.id}/>
-                          ))}
-                        </>
-                      ) : null }
-                    </div>
-                  </div>
+                          {incidentsC !== undefined && incidentsC.length > 0 ? (
+                            <>
+                              {incidentsC.map((incident) => (
+                                <Incidents incident={incident} key={incident.id}/>
+                              ))}
+                            </>
+                          ) : null }
+                        </div>
+                      </div>
+                    </>
+                  ) : <h2 className="text-xl font-bold mb-4 text-white">No existen incidencias</h2>}
                 </>
               ): null}
               {page === 'formincidents' ? (
@@ -107,7 +108,7 @@ const ProfileUser = () => {
                         <Notification data={notification} key={notification.id}/>
                       ))}
                     </>
-                  ) : null }
+                  ) : <h2 className="text-xl font-bold mb-4 text-white">No existen notificaciones</h2> }
                 </>
               ): null}
             </div>

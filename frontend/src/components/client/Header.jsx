@@ -52,11 +52,11 @@ const Header = () => {
           <img src="https://images.vexels.com/media/users/3/147102/isolated/preview/082213cb0f9eabb7e6715f59ef7d322a-icono-de-perfil-de-instagram.png" alt="" className="aspect-square" />
         </div>
         {showMenu && (
-          <div className="fixed right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
-            <a onClick={() => redirects.profile()}className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Perfil</a>
-            {AuthState.isAdmin ? <a onClick={() => redirects.dashboard()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dashboard</a> : ''}
-            <a onClick={() => redirects.profile()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Notificaciones</a>
-            <a onClick={() => logout()} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Log Out</a>
+          <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+            <a onClick={() => redirects.profile()} className="text-decoration-none block px-4 py-2 text-gray-800 hover:bg-gray-200">Perfil</a>
+            {AuthState.isAdmin ? <a onClick={() => redirects.dashboard()} className="text-decoration-none block px-4 py-2 text-gray-800 hover:bg-gray-200">Dashboard</a> : ''}
+            <a onClick={() => redirects.profile()} className="text-decoration-none block px-4 py-2 text-gray-800 hover:bg-gray-200">Notificaciones</a>
+            <a onClick={() => logout()} className="text-decoration-none block px-4 py-2 text-gray-800 hover:bg-gray-200">Log Out</a>
           </div>
         )}
       </div>
@@ -64,7 +64,7 @@ const Header = () => {
   ) : (              
     <>
       <a type="button" onClick={() => redirects.login()}
-        className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
+        className="text-decoration-none group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
         <span>Login</span>
       </a>
     </>
@@ -86,15 +86,15 @@ const Header = () => {
           </button>
           <nav className="hidden sm:flex space-x-4">
             <a type="button" onClick={() => redirects.home()}
-              className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
+              className="text-decoration-none group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Home</span>
             </a>
             <a type="button" onClick={() => redirects.trips()}
-              className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
+              className="text-decoration-none group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Trips</span>
             </a>
             <a type="button" onClick={() => redirects.home()}
-              className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
+              className="text-decoration-none group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Contact</span>
             </a>
           </nav>
@@ -102,9 +102,9 @@ const Header = () => {
         </div>
         {isOpen && (
           <nav className="sm:hidden mt-2 overflow-hidden z-10" >
-            <a onClick={() => redirects.home()} className="block py-2 px-4 text-white hover:bg-gray-700">Home</a>
-            <a onClick={() => redirects.trips()} className="block py-2 px-4 text-white hover:bg-gray-700">Trips</a>
-            <a onClick={() => redirects.home()} className="block py-2 px-4 text-white hover:bg-gray-700">Contacto</a>
+            <a onClick={() => redirects.home()} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Home</a>
+            <a onClick={() => redirects.trips()} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Trips</a>
+            <a onClick={() => redirects.home()} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Contacto</a>
           </nav>
         )}
       </header>

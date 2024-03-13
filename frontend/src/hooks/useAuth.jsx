@@ -54,7 +54,7 @@ export const useAuth = () => {
         "email": data.email,
         "username": data.displayName,
         "password": data.password,
-        "type_register": data.type_register,
+        "type_register": 'email',
       }
     }
     console.log(userData)
