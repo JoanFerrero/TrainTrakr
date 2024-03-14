@@ -36,7 +36,7 @@ const ProfileUser = () => {
             <AsideProfileMovile setPage={useChangePage} name={AuthState.user.name} user={AuthState.user}/>
           </div>
           <div className="md:w-2/3 w-full overflow-hidden">
-            <div className="2xl:w-[60rem] xl:w-[40rem] xl:h-[35rem] lg:w-[40rem] lg:h-[35rem] bg-gray-800 p-8 rounded-lg shadow-md overflow-y-auto mt-5 m-8">
+            <div className="2xl:w-[60rem] xl:w-[40rem] xl:h-[35rem] lg:w-[40rem] lg:h-[35rem] md:w-[32rem] md:h-[35rem] bg-gray-800 p-8 rounded-lg shadow-md overflow-y-auto mt-5 m-8">
               {page === 'bookings' ? (
                 <>
                   {rents !== undefined && rents.length > 0 && trip.length === 0 ? (

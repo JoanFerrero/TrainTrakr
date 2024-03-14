@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import DetailTren from "../../components/client/DetailsTrain";
+import DetailsMain from "../../components/client/details/DetailsMain";
 import { useTrips } from "../../hooks/useTrips";
 import { useParams } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const DetailsPage = () => {
 
   return (
     trip !== undefined ? (
-      <DetailTren trip={trip}/>
+      <DetailsMain trip={trip}/>
     ): (
       <h1>Cargando</h1>
     )
