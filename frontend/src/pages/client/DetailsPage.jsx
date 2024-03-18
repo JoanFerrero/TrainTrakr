@@ -15,7 +15,7 @@ const DetailsPage = () => {
     trip !== undefined ? (
       <DetailsMain trip={trip}/>
     ): (
-      <h1>Cargando</h1>
+      <h1>No encontrado</h1>
     )
   )
 }

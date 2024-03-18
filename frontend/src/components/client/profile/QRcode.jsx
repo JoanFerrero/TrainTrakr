@@ -12,9 +12,9 @@ function QRCodeTrip({trip}) {
   const formattedDate = `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}/${year}`;
 
   if(formattedDate < trip.trip.date) {
-    valor = 'active'
+    valor = 'http://localhost:5173/validation/' + trip.id 
   } else {
-    valor = 'no active'
+    valor = 'http://localhost:5173/validation/)203123'
   }
 
   return (

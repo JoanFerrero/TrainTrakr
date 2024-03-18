@@ -45,28 +45,18 @@ const DetailsMain = ({trip}) => {
                 <div className="card-body">
                   <h5 className="card-title">Silla seleccionada nivel: {chair.type}</h5>
                   <p className="card-text">Esta silla incluye su uso el dia {trip.date}</p>
-                  <a onClick={() => realizarReserva()} className="btn btn-primary">Realizar reserva</a>
+                  <a onClick={() => realizarReserva()} className="btn btn-primary mt-2">Realizar reserva</a>
                 </div>
               </div>
             ) : null }
           </div>
           <div className="md:w-1/3 w-ful md:hidden">
-            <div className="w-64 text-black-500 m-8">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">Salida: {trip.exit_station.name}</li>
-                <li className="list-group-item">LLegada: {trip.arrival_station.name}</li>
-                <li className="list-group-item">Duracion: {trip.time} h</li>
-              </ul>
-              <div className="card-header">
-                Precio Total: {price}€
-              </div>
-            </div>
             {chair !== undefined ? (
               <div className="card mt-4 m-8">
                 <div className="card-body">
                   <h5 className="card-title">Silla seleccionada nivel: {chair.type}</h5>
                   <p className="card-text">Esta silla incluye su uso el dia {trip.date}</p>
-                  <a onClick={() => realizarReserva()} className="btn btn-primary">Realizar reserva</a>
+                  <a onClick={() => realizarReserva()} className="btn btn-primary mt-2">Realizar reserva</a>
                 </div>
               </div>
             ) : null }        
@@ -76,7 +66,7 @@ const DetailsMain = ({trip}) => {
               {trip.chairs.map((chair) => (
                 <>
                   {chair.status === 'activo' ? (
-                    <CardChairs chair={chair} setChairSelected={setChairSelected}/>
+                    <CardChairs chair={chair} setChairSelected={setChairSelected}trip={trip}/>
                   ) : null}
                 </>
               ))}

@@ -11,11 +11,6 @@ const HeaderPage = ({ children }) => {
   const { AuthState } = useContext(AuthContext);
   const location = useLocation();
   const urlParts = location.pathname.split('/');
-  const { useIsLoged } = useAuth();
-
-  useEffect(() => {
-    useIsLoged();
-  }, [])
 
   return (
     <>

@@ -1,19 +1,25 @@
+import { useNavigate } from "react-router-dom";
+
 const SearchForm = () => {
+  const navigate = useNavigate();
+
+  const navigateToTrip = () => {
+    navigate('/trips')
+  }
+
   return (
     <>
-      <div className="bg-white w-full h-52 flex flex-col items-center justify-center rounded-lg">
-        <div className="flex flex-col w-2/3">
-          <div className="flex items-center border-b border-gray-300">
-            <label htmlFor="origen" className="mr-2">Desde:</label>
-            <input type="text" id="origen" placeholder="Estación de origen" className="flex-1 p-2 focus:outline-none" style={{border: 'none'}} />
-          </div>
-          <div className="flex items-center border-b border-gray-300">
-            <label htmlFor="destino" className="mr-2">Hasta:</label>
-            <input type="text" id="destino" placeholder="Estación de destino" className="flex-1 p-2 focus:outline-none" style={{border: 'none'}} />
-          </div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none mt-4">
-            Buscar
-          </button>
+      <div className="bg-white w-full h-auto lg:h-52 flex flex-col lg:flex-row items-center justify-center rounded-lg overflow-hidden">
+        <div className="lg:w-1/2 h-full hidden lg:block">
+          <img
+            src="https://media.istockphoto.com/id/1181249621/es/foto/el-tren-de-pasajeros-el%C3%A9ctrico-conduce-a-alta-velocidad-entre-el-paisaje-urbano.jpg?s=612x612&w=0&k=20&c=_AzHK-F82oA06ua1wjTC4NfoI076OKTBH4rYcP17YC4="
+            alt="Imagen"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="lg:w-1/2 flex flex-col justify-center items-center p-4">
+          <h2 className="text-2xl lg:text-3xl font-bold text-center mb-4">Descubre aventuras con Train Trakr. ¡Empieza ahora!</h2>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => navigateToTrip()}>Buscar viajes</button>
         </div>
       </div>
     </>

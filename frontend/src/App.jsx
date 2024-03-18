@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import React, { Suspense } from 'react';
 
 import { StationsProvider } from './context/stations/StationsProvider';
 import { TrainsProvider } from './context/trains/TrainsProvider';
@@ -7,129 +8,106 @@ import { ChairsProvider } from './context/chairs/ChairsProvider';
 import { AuthProvider } from './context/Auth/AuthProvider';
 import { NotificationsProvider } from './context/Notifications/NotificationsProvider'
 import { IncidentsProvider } from './context/Incidents/IncidentsProvider';
-import HomePage from './pages/client/HomePage';
-import DashboardPage from './pages/admin/DashboardPage';
-
-import Trips from './pages/client/TripsPage';
-import CreateStationsPage from './pages/admin/stations/CreateStationsPage';
-import ListStationsPage from './pages/admin/stations/ListStationsPage';
-import EditStationPage from './pages/admin/stations/EditStationsPage';
-
-import ListTrainsPage from './pages/admin/trains/ListTrainsPage';
-import CreateTrainsPage from './pages/admin/trains/CreateTrainsPage';
-import EditTrainsPage from './pages/admin/trains/EditTrainsPage';
-
-import ListChairsPage from './pages/admin/chairs/ListChairsPage';
-import CreateChairsPage from './pages/admin/chairs/CreateChairsPage';
-import EditChairsPage from './pages/admin/chairs/EditChairsPage';
-
-import ListTripsPage from './pages/admin/trips/ListTripsPage';
-import CreateTripsPage from './pages/admin/trips/CreateTripsPage';
-
-import LoginPage from './pages/client/LoginPage';
-import RegisterPage from './pages/client/RegisterPage';
-
-import HeaderPage from './pages/HeaderPage';
-
-import ProfilePage from './pages/client/ProfilePage';
+import { TripsProvider } from './context/trips/TripsProvider';
 
 import AdminGuard from './services/guards/AdminGuard';
-import AuthGuard from './services/guards/AuthGuard';
-import { TripsProvider } from './context/trips/TripsProvider';
-import DetailsPage from './pages/client/DetailsPage';
+import { AuthGuard, NoAuthGuard } from './services/guards/AuthGuard';
+import Loading from './components/client/Loading/Loading';
 
-import ListIncidentsPage from './pages/admin/incidents/ListIncidentsPage';
-import EditIncidentsPage from './pages/admin/incidents/EditIncidentsPage';
 function App() { 
+  const HomePage = React.lazy(() => import('./pages/client/HomePage'));
+  const DashboardPage = React.lazy(() => import('./pages/admin/DashboardPage'));
+
+  const Trips = React.lazy(() => import('./pages/client/TripsPage'));
+  const CreateStationsPage = React.lazy(() => import('./pages/admin/stations/CreateStationsPage'));
+  const ListStationsPage = React.lazy(() => import('./pages/admin/stations/ListStationsPage'));
+  const EditStationPage = React.lazy(() => import('./pages/admin/stations/EditStationsPage'));
+
+  const ListTrainsPage = React.lazy(() => import('./pages/admin/trains/ListTrainsPage'));
+  const CreateTrainsPage = React.lazy(() => import('./pages/admin/trains/CreateTrainsPage'));
+  const EditTrainsPage = React.lazy(() => import('./pages/admin/trains/EditTrainsPage'));
+
+  const ListChairsPage = React.lazy(() => import('./pages/admin/chairs/ListChairsPage'));
+  const CreateChairsPage = React.lazy(() => import('./pages/admin/chairs/CreateChairsPage'));
+  const EditChairsPage = React.lazy(() => import('./pages/admin/chairs/EditChairsPage'));
+
+  const ListTripsPage = React.lazy(() => import('./pages/admin/trips/ListTripsPage'));
+  const CreateTripsPage = React.lazy(() => import('./pages/admin/trips/CreateTripsPage'));
+
+  const LoginPage = React.lazy(() => import('./pages/client/LoginPage'));
+  const RegisterPage = React.lazy(() => import('./pages/client/RegisterPage'));
+
+  const HeaderPage = React.lazy(() => import('./pages/HeaderPage'));
+
+  const ProfilePage = React.lazy(() => import('./pages/client/ProfilePage'));
+
+  const DetailsPage = React.lazy(() => import('./pages/client/DetailsPage'));
+
+  const ListIncidentsPage = React.lazy(() => import('./pages/admin/incidents/ListIncidentsPage'));
+  const EditIncidentsPage = React.lazy(() => import('./pages/admin/incidents/EditIncidentsPage'));
+  const QRValidation = React.lazy(() => import('./pages/client/QRValidation'));
+
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <NotificationsProvider>
-          <StationsProvider>
-            <TrainsProvider>
-              <ChairsProvider>
-                <TripsProvider>
-                  <IncidentsProvider>
-                    <HeaderPage>
-                      <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/trips" element={<Trips />} />
-                        <Route path='/login' element={<LoginPage />} />
-                        <Route path='/register' element={<RegisterPage />} />
-                        <Route element={<AdminGuard/>}>
-                          <Route path="/dashboard" element={<DashboardPage/>} />
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <AuthProvider>
+          <NotificationsProvider>
+            <StationsProvider>
+              <TrainsProvider>
+                <ChairsProvider>
+                  <TripsProvider>
+                    <IncidentsProvider>
+                      <HeaderPage>
+                        <Routes>
+                          <Route path="/" element={<HomePage />} />
+                          <Route path="/trips" element={<Trips />} />
+                          <Route element={<NoAuthGuard />}>
+                            <Route path='/login' element={<LoginPage />} />
+                            <Route path='/register' element={<RegisterPage />} />
+                          </Route>
+                          <Route element={<AuthGuard />}>
+                            <Route path='/profile' element={<ProfilePage />} />
+                            <Route path="/trips/:slug" element={<DetailsPage />} />
+                            <Route path="/validation/:slug" element={<QRValidation />} />
+                          </Route>
+                          <Route element={<AdminGuard/>}>
+                            <Route path="/dashboard" element={<DashboardPage/>} />
 
-                          <Route path="/dashboard/createstations" element={<CreateStationsPage/>} />
-                          <Route path="/dashboard/liststations" element={<ListStationsPage/>} />
-                          <Route path="/dashboard/updatestations/:slug" element={<EditStationPage/>} />
+                            <Route path="/dashboard/createstations" element={<CreateStationsPage/>} />
+                            <Route path="/dashboard/liststations" element={<ListStationsPage/>} />
+                            <Route path="/dashboard/updatestations/:slug" element={<EditStationPage/>} />
 
-                          <Route path="/dashboard/listtrains" element={<ListTrainsPage />} />
-                          <Route path="/dashboard/createtrains" element={<CreateTrainsPage />} />
-                          <Route path="/dashboard/updatetrains/:slug" element={<EditTrainsPage />} />
+                            <Route path="/dashboard/listtrains" element={<ListTrainsPage />} />
+                            <Route path="/dashboard/createtrains" element={<CreateTrainsPage />} />
+                            <Route path="/dashboard/updatetrains/:slug" element={<EditTrainsPage />} />
 
-                          <Route path="/dashboard/listchairs" element={<ListChairsPage />} />
-                          <Route path="/dashboard/createchairs" element={<CreateChairsPage />} />
-                          <Route path="/dashboard/updatechairs/:slug" element={<EditChairsPage />} />
-                        
-                          <Route path="/dashboard/listtrips" element={<ListTripsPage />} />
-                          <Route path="/dashboard/createtrips" element={<CreateTripsPage />} />
+                            <Route path="/dashboard/listchairs" element={<ListChairsPage />} />
+                            <Route path="/dashboard/createchairs" element={<CreateChairsPage />} />
+                            <Route path="/dashboard/updatechairs/:slug" element={<EditChairsPage />} />
+                          
+                            <Route path="/dashboard/listtrips" element={<ListTripsPage />} />
+                            <Route path="/dashboard/createtrips" element={<CreateTripsPage />} />
 
-                          <Route path="/dashboard/listincidents" element={<ListIncidentsPage />} />
-                          <Route path="/dashboard/updateincidents/:type/:slug" element={<EditIncidentsPage />} />
+                            <Route path="/dashboard/listincidents" element={<ListIncidentsPage />} />
+                            <Route path="/dashboard/updateincidents/:type/:slug" element={<EditIncidentsPage />} />
 
-                        </Route>
-                        <Route element={<AuthGuard />}>
-                          <Route path='/profile' element={<ProfilePage />} />
-                          <Route path="/trips/:slug" element={<DetailsPage />} />
-                        </Route>
-                      </Routes>
-                      <Toaster
-                        position="top-right"
-                        reverseOrder={false}
-                      />
-                    </HeaderPage>
-                  </IncidentsProvider>
-                </TripsProvider>
-              </ChairsProvider>
-            </TrainsProvider>
-          </StationsProvider>
-        </NotificationsProvider>
-      </AuthProvider>
-    </BrowserRouter>
+                          </Route>
+                        </Routes>
+                        <Toaster
+                          position="top-right"
+                          reverseOrder={false}
+                        />
+                      </HeaderPage>
+                    </IncidentsProvider>
+                  </TripsProvider>
+                </ChairsProvider>
+              </TrainsProvider>
+            </StationsProvider>
+          </NotificationsProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </Suspense>
   )
 }
 
 export default App
-
-//**import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import { StationsProvider } from './context/StationsProvider';
-//import React, { Suspense } from 'react';
-
-//const Home = React.lazy(() => import('./pages/client/HomePage'));
-//const Stations = React.lazy(() => import('./pages/client/StationsPage'));
-//const DashboardPage = React.lazy(() => import('./pages/admin/DashboardPage'));
-
-//const CreateStationsPage = React.lazy(() => import('./pages/admin/CreateStationsPage'));
-//const ListStationsPage = React.lazy(() => import('./pages/admin/ListStationsPage'));
-//const EditStationPage = React.lazy(() => import('./pages/admin/EditStationsPage'));
-
-//function App() { 
-//  return (
-    //<Suspense>
-      //<BrowserRouter>
-        //<StationsProvider>
-          //<Routes>
-            //<Route path="/" element={<Home />} />
-            //<Route path='/stations' element={<Stations />} />
-            //<Route path="/dashboard" element={<DashboardPage/>} />
-            //<Route path="/dashboard/createstations" element={<CreateStationsPage/>} />
-            //<Route path="/dashboard/liststations" element={<ListStationsPage/>} />
-            //<Route path="/dashboard/updatestations/:slug" element={<EditStationPage/>}/>
-          //</Routes>
-        //</StationsProvider>
-      //</BrowserRouter>
-  //</Suspense>
-//  )
-//}
-
-//export default App
