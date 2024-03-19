@@ -1,6 +1,7 @@
 import InvoicePDF from "./InvoicePDF";
 
 const Bookings = ({rent, setPageData, setTrip}) => {
+  console.log(rent)
   const setIncident = () => {
     setPageData('formincidents', rent)
   }
@@ -30,7 +31,7 @@ const Bookings = ({rent, setPageData, setTrip}) => {
           </span>
         </div>
       </div>
-      <InvoicePDF />
+      <InvoicePDF rent={rent}/>
     </>
   )
 }
