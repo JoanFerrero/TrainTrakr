@@ -1,8 +1,9 @@
-import {useContext, useEffect, useState } from "react";
+import {useContext, useState } from "react";
 import CardTrips from '../cards/CardTrips';
 import { TripsContext } from "../../../context/trips/TripsProvider";
-import Button from "../filters/ButtonFilers"
+import Button from "../filters/ButtonFilters"
 import Pagination from "../../utils/Pagination";
+
 const ListTrips = ({ elementsPag = 4}) => {
 
   const { TripsState } = useContext(TripsContext);

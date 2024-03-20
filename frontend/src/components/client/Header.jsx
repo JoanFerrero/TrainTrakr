@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useContextHook } from "../../hooks/useContextHook";
 import { AuthContext } from "../../context/Auth/AuthProvider";
 import { useAuth } from "../../hooks/useAuth";
-import { NotificationsContext } from "../../context/Notifications/NotificationsProvider";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -22,15 +21,6 @@ const Header = () => {
   };
 
   setDataContexts()
-
-  const redirects = {
-    home: () => navigate('/'),
-    trips: () => navigate('/trips'),
-    dashboard: () => navigate('/dashboard'),
-    login: () => navigate('/login'),
-    register: () => navigate('/register'),
-    profile: () => navigate('/profile'),
-  }
 
   const logout = () => {
     useLogOutUser()

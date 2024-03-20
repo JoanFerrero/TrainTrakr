@@ -1,10 +1,8 @@
-// CardStations.test.js
 
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import CardStations from './CardStations';
 
-// Mocking useContextHook and useNavigate
 const mockUseChangeFiler = vi.fn();
 const mockNavigate = vi.fn();
 

@@ -11,7 +11,7 @@ const Validation = ({rent}) => {
     <>
       {otraFecha > fechaActual ?  (
         <div className="flex justify-center mt-10 h-screen">
-          <div className="w-64 h-64 bg-green-500 flex justify-center items-center rounded-lg">
+          <div className="w-64 h-64 bg-green-500 flex justify-center items-center rounded-lg" data-testid="color">
             <svg className="w-24 h-24 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
             </svg>
@@ -19,7 +19,7 @@ const Validation = ({rent}) => {
         </div>
       ): (
         <div className="flex justify-center mt-10 h-screen">
-          <div className="w-64 h-64 bg-red-500 flex justify-center items-center rounded-lg">
+          <div className="w-64 h-64 bg-red-500 flex justify-center items-center rounded-lg" data-testid="color">
             <svg className="w-24 h-24 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
