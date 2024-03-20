@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import { ChairsContext } from "../../../context/chairs/ChairsProvider";
 import { useChairs } from "../../../hooks/useChairs";
 import { useNavigate } from "react-router-dom";
 
-const ListChairs = () => {
+const ListChairs = ({chairs}) => {
   const navigate = useNavigate();
-  const { ChairsState } = useContext(ChairsContext);
   const { useDeleteChair } = useChairs();
 
   const redirects = {
@@ -25,7 +22,7 @@ const ListChairs = () => {
         </tr>
       </thead>
       <tbody>
-        {ChairsState.chairs.map((chair) => (
+        {chairs.map((chair) => (
           <tr key={chair.id}>
             <th scope="row">{chair.id}</th>
             <td>{chair.name}</td>

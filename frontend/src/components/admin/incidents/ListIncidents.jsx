@@ -7,10 +7,6 @@ const ListIncidents = () => {
   const navigate = useNavigate();
   const { IncidentsState } = useContext(IncidentsContext);
 
-  const changeStatus = (data, incident) => {
-    console.log(id)
-  }
-
   useEffect(() => {
     setDataInsidents()
   }, [])
