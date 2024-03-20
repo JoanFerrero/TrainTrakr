@@ -96,25 +96,19 @@ export const useAuth = () => {
     } else {
       userData = {
         "email": data.email,
-        "username": data.displayName,
-        "password": data.password,
-        "type_register": data.type_register,
+        "username": data.username,
+        "password": data.password1,
+        "type_register": 'email',
       }
     }
     AuthService.registerUser(userData)
       .then(({ data, status}) => {
         if (status === 200) {
-          //localStorage.setItem('token', data.token);
-          //dispathCustom("SET_TOKEN", data.token, "auth");
-          //dispathCustom("SET_USER", data.user, "auth");
-          //dispathCustom("SET_IS_AUTH", true, "auth");
-          //dispathCustom("SET_IS_ADMIN", data.user.type === 'admin', "auth");
-          toast.success('Registro correcto!!');
+          toast.success("Please check you'r email for continue");
           navigate('/login');
         }
     }).catch(e => {
       console.error(e);
-      useLogOutUser();
       toast.error('Datos incorrecto!');
     });
   }, [])

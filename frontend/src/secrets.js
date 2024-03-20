@@ -5,7 +5,7 @@ const secrets = {
   projectId: "traintrakr-4932d",
   storageBucket: "traintrakr-4932d.appspot.com",
   messagingSenderId: "280677672616",
-  appId: "1:280677672616:web:bf9e3093a98c625830c49d"
+  appId: "1:280677672616:web:bf9e3093a98c625830c49d",
 }
 
 export default secrets;

@@ -10,8 +10,6 @@ export function AuthGuard() {
 
 export function NoAuthGuard() {
   const { AuthState } = useContext(AuthContext);
-  console.log(AuthState)
-  console.log(AuthState.isAuth)
-  console.log(!AuthState.isAuth)
+  
   return !AuthState.isAuth ? <Outlet /> : <Navigate to="/" />
 }

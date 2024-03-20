@@ -1,17 +1,16 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import { useRent } from "../../../hooks/useRent";
 import { AuthContext } from "../../../context/Auth/AuthProvider";
 import AsideProfile from "./AsideProfile";
 import { useProfile } from "../../../hooks/useProfile";
 import Bookings from "./Bookings";
-import DataProfile from "./DataProfile";
 import { useIncidents } from "../../../hooks/useIncidents";
 import Incidents from "./Incidents";
 import FormIncidents from "../incidents/FormIncidents";
 import Notification from "../notifications/Notification";
 import { useNotification } from "../../../hooks/useNotification";
 import { NotificationsContext } from "../../../context/Notifications/NotificationsProvider"
-import QRCodeTrip from "./QRcode";
+import QRCodeTrip from "./QRCodeTrip";
 import AsideProfileMovile from "./AsideProfileMovile";
 
 const ProfileUser = () => {

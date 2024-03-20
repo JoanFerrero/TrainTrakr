@@ -3,9 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { signInWithPopup } from "firebase/auth";
 import { auth, providerGitHub, providerGoogle } from "../../../services/FirebaseService";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = ({sendData}) => {
-
+  const navigate = useNavigate();
   const validators = Yup.object().shape({
     email: Yup.string().required('*The email is required').min(3).max(50),
     password: Yup.string().required('*The password is required'),
@@ -77,6 +78,12 @@ const FormLogin = ({sendData}) => {
             className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
             Iniciar Sesión
+          </button>
+        </div>
+        <div className="flex gap-4 items-center justify-center">
+          <button type="button" onClick={() => navigate('/register')}
+            className="group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-sm font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed bg-blue-700 stroke-white px-6 text-white hover:bg-blue-950 h-[42px] min-w-[42px] gap-2 disabled:bg-slate-100 disabled:stroke-slate-400 disabled:text-slate-400 disabled:hover:bg-slate-100">
+            <span>Register</span>
           </button>
         </div>
         <div className="flex gap-4 items-center justify-center">

@@ -48,7 +48,7 @@ function App() {
   const QRValidation = React.lazy(() => import('./pages/client/QRValidation'));
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense>
       <BrowserRouter>
         <AuthProvider>
           <NotificationsProvider>
@@ -60,6 +60,7 @@ function App() {
                       <HeaderPage>
                         <Routes>
                           <Route path="/" element={<HomePage />} />
+                          <Route path="/home" element={<HomePage />} />
                           <Route path="/trips" element={<Trips />} />
                           <Route element={<NoAuthGuard />}>
                             <Route path='/login' element={<LoginPage />} />
