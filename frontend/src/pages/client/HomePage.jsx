@@ -4,8 +4,10 @@ import Hero from "../../components/client/home/Hero";
 const Home = () => {
   return (
     <>
-      <Hero />
-      <ListStations itemsPag={3}/>
+      <div className="bg-slate-100">
+        <Hero />
+        <ListStations itemsPag={4}/>
+      </div>
     </>
   )
 }

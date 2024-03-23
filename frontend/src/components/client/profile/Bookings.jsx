@@ -1,7 +1,6 @@
 import InvoicePDF from "./InvoicePDF";
 
 const Bookings = ({rent, setPageData, setTrip}) => {
-  console.log(rent)
   const setIncident = () => {
     setPageData('formincidents', rent)
   }

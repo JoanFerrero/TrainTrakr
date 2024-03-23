@@ -5,7 +5,7 @@ const TripsPage = () => {
     <>
       <div className="flex">
         <div className="w-full min-[1220px]:w-1/2 overflow-hidden">
-          <ListTrips elementsPag={3}/>
+          <ListTrips elementsPag={4}/>
         </div>
         <div className="hidden min-[1220px]:block w-1/2"> 
           <Map />

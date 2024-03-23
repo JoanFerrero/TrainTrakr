@@ -6,7 +6,7 @@ const ListStations = ({ itemsPag = 3}) => {
   const { StationsState } = useContext(StationsContext);
 
   const [itemsToShow, setItemsToShow] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
+  const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     setItemsToShow(StationsState.stations.slice(0, itemsPag))
   }, [StationsState.stations.length])
@@ -24,8 +24,14 @@ const ListStations = ({ itemsPag = 3}) => {
       {StationsState.stations.length !== 0 ? (
         <>
           <section className="text-gray-600 body-font">
-            <div className="container px-5 py-24 mx-auto">
-              <div className="flex flex-wrap ">
+            <div className="px-5 py-24">
+              <div className="flex flex-wrap w-full mb-20">
+                <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
+                  <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Estaciones disponibles</h1>
+                  <div className="h-1 w-20 bg-indigo-500 rounded"></div>
+                </div>
+              </div>
+              <div className="flex flex-wrap -m-4">
                 {itemsToShow.length !== 0 ? (
                   <>
                     {itemsToShow.map((station) => (
@@ -36,7 +42,7 @@ const ListStations = ({ itemsPag = 3}) => {
               </div>
             </div>
           </section>
-          <div className="flex justify-center items-center mb-40">
+          <div className="flex justify-center items-center mb-32">
             {StationsState.stations.length !== itemsToShow.length ? (
               <button className="bg-blue-500 text-white p-4 rounded-lg cursor-pointer" onClick={handleShowMore}>Mostrar Más</button>
             ): null }

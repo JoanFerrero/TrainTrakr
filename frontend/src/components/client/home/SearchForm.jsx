@@ -9,7 +9,7 @@ const SearchForm = () => {
 
   return (
     <>
-      <div className="bg-white w-full h-auto lg:h-52 flex flex-col lg:flex-row items-center justify-center rounded-lg overflow-hidden">
+      <div className="bg-white w-full lg:h-96  flex flex-col lg:flex-row content-center rounded-lg overflow-hidden">
         <div className="lg:w-1/2 h-full hidden lg:block">
           <img
             src="https://media.istockphoto.com/id/1181249621/es/foto/el-tren-de-pasajeros-el%C3%A9ctrico-conduce-a-alta-velocidad-entre-el-paisaje-urbano.jpg?s=612x612&w=0&k=20&c=_AzHK-F82oA06ua1wjTC4NfoI076OKTBH4rYcP17YC4="

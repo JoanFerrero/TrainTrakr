@@ -13,7 +13,7 @@ const Map = () => {
   }
 
   return (
-    <div className="relative z-0">
+    <div className="relative z-0 m-10">
       <MapContainer
         center={[39.46065528327018, -0.38188461978603605]}
         zoom={8}

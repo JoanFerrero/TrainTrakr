@@ -3,7 +3,7 @@ import SearchForm from './SearchForm';
 const Hero = () => {
   return (
     <div
-      className="relative bg-cover bg-center bg-no-repeat lg:max-h-[25rem] sm:max-h-[25rem] max-h-[25rem]" style={{backgroundImage: `url(${TrainHero})`}}
+      className="relative bg-cover bg-center bg-no-repeat max-h-[50rem] items-center" style={{backgroundImage: `url(${TrainHero})`}}
       data-testid="hero-component"
     >
       <div
@@ -12,7 +12,7 @@ const Hero = () => {
 
       <div
         data-testid="search-form"
-        className="relative mx-auto max-w-[50rem] px-4 sm:py-24 py-20 sm:px-6 sm:h-[25rem]  lg:h-[25rem] lg:items-center lg:px-8"
+        className="flex items-center relative mx-auto max-w-[70rem] px-4 sm:py-24 py-20 sm:px-6 sm:h-[25rem]  lg:h-[35rem] lg:items-center lg:px-8"
       >
         <SearchForm />
       </div>
