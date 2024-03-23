@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 export const useProfile = () => {
-  const [page, setPage] = useState('bookings');
+  const [page, setPage] = useState('profile');
   const [rent, setRent] = useState([]);
   const [trip, setTrip] = useState([]);
 

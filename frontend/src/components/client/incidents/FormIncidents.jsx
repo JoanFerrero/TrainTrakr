@@ -30,7 +30,7 @@ const FormIncidents = ({data, sendData}) => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <h1>Nuava incidencia</h1>
+            <h1 className="text-black">Nuava incidencia</h1>
             <form onSubmit={handleSubmit(submitForm)}>
               <div className="form-group">
                 <select className="form-control" id="tipo"  {...register('option')}>
@@ -39,13 +39,13 @@ const FormIncidents = ({data, sendData}) => {
                 </select>
               </div>
               <div className="form-group">
-                <label htmlFor="titulo">Título</label>
+                <label htmlFor="titulo" className="text-black">Título</label>
                 <input type="text" className="form-control" id="titulo"
                  placeholder="Ingrese el título" {...register('title')} />
                 <span>{errors.title?.message}</span>
               </div>
               <div className="form-group">
-                <label htmlFor="descripcion">Descripción</label>
+                <label htmlFor="descripcion" className="text-black">Descripción</label>
                 <textarea className="form-control" id="descripcion" {...register('desc')} rows="3" placeholder="Ingrese la descripción"></textarea>
                 <span>{errors.desc?.message}</span>
               </div>

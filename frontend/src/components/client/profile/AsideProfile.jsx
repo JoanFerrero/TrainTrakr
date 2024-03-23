@@ -33,7 +33,7 @@ const AsideProfile = ({setPage}) => {
               </button>
               {profileDropdownOpen && (
                 <div className="mt-2 pl-2 transition-all duration-300 ease-in-out">
-                  <li className="block py-2 text-xl  text-black hover:text-gray-500" onClick={() => setPage('proffile')}>Ver Perfil</li>
+                  <li className="block py-2 px-3 text-xl  text-black hover:text-gray-500" onClick={() => setPage('profile')}>Ver Perfil</li>
                 </div>
               )}
             </div>
@@ -47,9 +47,9 @@ const AsideProfile = ({setPage}) => {
               </button>
               {settingsDropdownOpen && (
                 <div className="mt-2 pl-2">
-                  <li className="block py-2 text-xl text-black hover:text-gray-500" onClick={() => setPage('bookings')}>Mis Viajes</li>
-                  <li className="block py-2 text-xl text-black hover:text-gray-500" onClick={() => setPage('notifications')}>Mis Notificaciones</li>
-                  <li className="block py-2 text-xl text-black hover:text-gray-500" onClick={() => setPage('incidents')}>Mis Incidencias</li>
+                  <li className="block py-2 px-3 text-xl text-black hover:text-gray-500" onClick={() => setPage('bookings')}>Mis Viajes</li>
+                  <li className="block py-2 px-3 text-xl text-black hover:text-gray-500" onClick={() => setPage('notifications')}>Mis Notificaciones</li>
+                  <li className="block py-2 px-3 text-xl text-black hover:text-gray-500" onClick={() => setPage('incidents')}>Mis Incidencias</li>
                 </div>
               )}
             </div>

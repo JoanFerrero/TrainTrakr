@@ -36,7 +36,9 @@ const ListIncidents = () => {
               <td>{trainI.title}</td>
               <td>{trainI.desc}</td>
               <td className="btn-secondary">{trainI.status}</td>
-              <button className="btn btn-secondary" onClick={() => redirects.editT(trainI.id)}>Change Status</button>
+              {trainI.status !== 'resolved' ? (
+                <button className="btn btn-secondary" onClick={() => redirects.editT(trainI.id)}>Change Status</button>
+              ) : null}
             </tr>
           ))}
         </tbody>
@@ -58,9 +60,10 @@ const ListIncidents = () => {
               <th scope="row">{chairI.id}</th>
               <td>{chairI.title}</td>
               <td>{chairI.desc}</td>
-              <td>{chairI.status}</td>
               <td className="btn-secondary">{chairI.status}</td>
-              <button className="btn btn-secondary" onClick={() => redirects.editC(chairI.id)}>Change Status</button>
+              {chairI.status !== 'resolved' ? (
+                <button className="btn btn-secondary" onClick={() => redirects.editC(chairI.id)}>Change Status</button>
+              ) : null}
             </tr>
           ))}
         </tbody>

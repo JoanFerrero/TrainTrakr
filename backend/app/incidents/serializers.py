@@ -90,10 +90,10 @@ class IncidentsTrainSerializer(serializers.ModelSerializer):
             incidence.status = 'pending'
         elif (new_status == 'in_progress'):
             incidence.status = 'in_progress'
-            Notification.objects.create(desc="Incidencia para: " + str(incidence.title) + ", esta en proceso.", user_id=incidence.user_id, seen=False)
+            Notification.objects.create(desc="Incidencia: " + str(incidence.title) + ", esta en proceso.", user_id=incidence.user_id, seen=False)
         elif (new_status == 'resolved'):
             incidence.status = 'resolved'
-            Notification.objects.create(desc="Incidencia para: " + str(incidence.title) + ", esta resuelta. Thank you!", user_id=incidence.user_id, seen=False)
+            Notification.objects.create(desc="Incidencia: " + str(incidence.title) + ", esta resuelta. Thank you!", user_id=incidence.user_id, seen=False)
         else:
             raise serializers.ValidationError('The incidence is closed')
 
@@ -186,10 +186,10 @@ class IncidentsChairSerializer(serializers.ModelSerializer):
             incidence.status = 'pending'
         elif (new_status == 'in_progress'):
             incidence.status = 'in_progress'
-            Notification.objects.create(desc="Incidencia para: " + str(incidence.title) + ", esta en proceso.", user_id=incidence.user_id, seen=False)
+            Notification.objects.create(desc="Incidencia: " + str(incidence.title) + ", esta en proceso.", user_id=incidence.user_id, seen=False)
         elif (new_status == 'resolved'):
             incidence.status = 'resolved'
-            Notification.objects.create(desc="Incidencia para: " + str(incidence.title) + ", esta resuelta. Gracias!", user_id=incidence.user_id, seen=False)
+            Notification.objects.create(desc="Incidencia: " + str(incidence.title) + ", esta resuelta. Gracias!", user_id=incidence.user_id, seen=False)
         else:
             raise serializers.ValidationError('The incidence is closed')
 
