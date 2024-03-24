@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { PDFDownloadLink, Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import InvoiceNo from './PDF/InvoiceNo';
+import InvoiceItemsTable from './PDF/InvoiceItemsTable';
+import InvoiceThankYouMsg from './PDF/InvoiceThankYouMsg';
+import BillTo from './PDF/BillTo';
+import InvoiceTitle from './PDF/InvoiceTitle';
+
 
 const InvoicePDF = ({ rent }) => {
   const [price, setPrice] = useState(0);
@@ -12,30 +18,20 @@ const InvoicePDF = ({ rent }) => {
 
   const styles = StyleSheet.create({
     page: {
-      flexDirection: 'column',
-      padding: 10,
-    },
-    section: {
-      margin: 10,
-      padding: 10,
-      flexGrow: 1,
-    },
-    header: {
-      fontSize: 24,
-      marginBottom: 20,
-    },
-    subheader: {
-      fontSize: 18,
-      marginBottom: 10,
-    },
-    text: {
-      fontSize: 12,
-      marginBottom: 5,
-    },
-    qrCode: {
-      alignSelf: 'center',
-      marginTop: 20,
-    },
+        fontFamily: 'Helvetica',
+        fontSize: 11,
+        paddingTop: 30,
+        paddingLeft:60,
+        paddingRight:60,
+        lineHeight: 1.5,
+        flexDirection: 'column',
+    }, 
+    logo: {
+        width: 74,
+        height: 66,
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    }
   });
 
   const generateQRDataURL = (url) => {
@@ -44,19 +40,36 @@ const InvoicePDF = ({ rent }) => {
 
   const qrDataURL = generateQRDataURL('http://localhost:5173/validation/' + rent.id );
 
+  const invoiceData = {
+    id: "5df3180a09ea16dc4b95f910",
+    invoice_no: "201906-28",
+    balance: price,
+    company: "Train Trakr",
+    email: "traintrakr@gmail.com",
+    phone: "699 61 33 82",
+    address: "Online Web",
+    trans_date: rent.trip.date,
+    due_date: rent.trip.date,
+    items: [
+      {
+        sno: 1,
+        exit: rent.trip.exit_station.name + "-" + rent.trip.arrival_station.name,
+        time: rent.trip.time,
+        price: price,
+      },
+    ],
+  };
+
   const data = (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
-          <Text style={styles.header}>Train Trakr - Factura de Viaje - {rent.train.name}</Text>
-          <Text style={styles.subheader}>Detalles del Viaje:</Text>
-          <Text style={styles.text}>Origen: {rent.trip.exit_station.name}</Text>
-          <Text style={styles.text}>Destino: {rent.trip.arrival_station.name}</Text>
-          <Text style={styles.text}>Fecha: {rent.trip.date}</Text>
-          <Text style={styles.text}>Precio: {price}</Text>
-          <View style={styles.qrCode}>
-            <Image src={qrDataURL} style={{ width: 100, height: 100 }} />
-          </View>
+        <InvoiceTitle title='Train Trakr'/>
+        <InvoiceNo invoice={invoiceData}/>
+        <BillTo invoice={invoiceData}/>
+        <InvoiceItemsTable invoice={invoiceData} />
+        <InvoiceThankYouMsg />
+        <View style={styles.qrCode}>
+          <Image src={qrDataURL} style={{ width: 100, height: 100 }} />
         </View>
       </Page>
     </Document>
