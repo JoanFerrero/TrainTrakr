@@ -102,7 +102,7 @@ Lista de tecnologías utilizadas en este proyecto:
     - react-qr-code
     - firebase
     - react-pdf/renderer
- - Test:
+  - Test:
     - Vitest 
 
 `BBDD`💾
