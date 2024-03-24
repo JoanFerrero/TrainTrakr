@@ -12,7 +12,6 @@ import { TripsProvider } from './context/trips/TripsProvider';
 
 import AdminGuard from './services/guards/AdminGuard';
 import { AuthGuard, NoAuthGuard } from './services/guards/AuthGuard';
-import Loading from './components/client/Loading/Loading';
 
 function App() { 
   const HomePage = React.lazy(() => import('./pages/client/HomePage'));
@@ -36,6 +35,8 @@ function App() {
 
   const LoginPage = React.lazy(() => import('./pages/client/LoginPage'));
   const RegisterPage = React.lazy(() => import('./pages/client/RegisterPage'));
+
+  const ContactPage = React.lazy(() => import('./pages/client/ContactPage'));
 
   const HeaderPage = React.lazy(() => import('./pages/HeaderPage'));
 
@@ -62,6 +63,7 @@ function App() {
                           <Route path="/" element={<HomePage />} />
                           <Route path="/home" element={<HomePage />} />
                           <Route path="/trips" element={<Trips />} />
+                          <Route path="/contact" element={<ContactPage />} />
                           <Route element={<NoAuthGuard />}>
                             <Route path='/login' element={<LoginPage />} />
                             <Route path='/register' element={<RegisterPage />} />

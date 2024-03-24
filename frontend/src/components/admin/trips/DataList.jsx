@@ -17,7 +17,7 @@ const DataList = ({trip}) => {
       <td>{exit.name}</td>
       <td>{arrival.name}</td>
       <td>{trip.date}</td>
-      <td>{trip.time}</td>
+      <td>{trip.time} h</td>
     </tr>
   )
 }

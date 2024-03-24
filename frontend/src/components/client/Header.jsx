@@ -85,7 +85,7 @@ const Header = () => {
               className="text-decoration-none group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-xl font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Viajes</span>
             </a>
-            <a type="button" onClick={() => redireccion('home')}
+            <a type="button" onClick={() => redireccion('contact')}
               className="text-decoration-none group inline-flex items-center justify-center whitespace-nowrap rounded-lg py-2 align-middle text-xl font-semibold leading-none transition-all duration-300 ease-in-out disabled:cursor-not-allowed stroke-black px-2 text-white h-[38px] min-w-[38px] gap-2 cursor-pointer disabled:stroke-slate-400 disabled:text-slate-400 hover:opacity-80">
               <span>Contacto</span>
             </a>

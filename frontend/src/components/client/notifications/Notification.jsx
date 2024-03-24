@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNotification } from "../../../hooks/useNotification";
 
 const Notification = ({data}) => {
-  const {updateNotification} = useNotification()
-  console.log(data)
+  const {updateNotification} = useNotification();
+  
   return (
     <>
       {data.seen === true ? (

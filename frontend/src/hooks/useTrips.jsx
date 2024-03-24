@@ -17,8 +17,9 @@ export const useTrips = () => {
     TripsService.createTrip(data)
       .then(({ data, status }) => {
         if (status === 200) {
+          console.log(data)
           dispathCustom('ADD_TRIPS', data, 'trips')
-          navigate('/dashboard')
+          navigate('/dashboard/listtrips')
         }
       })
   }, [])

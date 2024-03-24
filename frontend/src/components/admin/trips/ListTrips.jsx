@@ -10,10 +10,10 @@ const ListTrips = () => {
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Salida</th>
+          <th scope="col">Destino</th>
           <th scope="col">Fecha</th>
           <th scope="col">Horas</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>

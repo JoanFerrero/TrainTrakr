@@ -11,7 +11,6 @@ import Notification from "../notifications/Notification";
 import { useNotification } from "../../../hooks/useNotification";
 import { NotificationsContext } from "../../../context/Notifications/NotificationsProvider"
 import QRCodeTrip from "./QRCodeTrip";
-import AsideProfileMovile from "./AsideProfileMovile";
 import DataProfile from "./DataProfile";
 import NumbersProfile from "./NumbersProfile";
 

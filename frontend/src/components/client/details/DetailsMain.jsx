@@ -3,9 +3,10 @@ import { useRent } from '../../../hooks/useRent'
 import { useNavigate } from "react-router-dom";
 import CardChairs from "./CardChairs";
 import AsideDetails from "./AsideDetails";
+import Map from "./Map";
+import Swal from 'sweetalert2';
 
 const DetailsMain = ({trip}) => {
-
   const [chair, setChair] = useState(null);
   const [price, setPrice] = useState(0);
   const { useCreateRent } = useRent();
@@ -18,10 +19,29 @@ const DetailsMain = ({trip}) => {
     setChair(chair)
   }
 
-  const realizarReserva = () => {
+  const realizarReserva1 = () => {
     useCreateRent(chair.slug)
     redirects.profile()
   }
+
+  const realizarReserva = () => {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres reservar este asiento de tren?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, reservar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTimeout(() => {
+          window.location.href = '/profile';
+        }, 3000);
+        useCreateRent(chair.slug)
+        Swal.fire('¡Reservado!', 'El asiento ha sido reservado correctamente.', 'success');
+      }
+    });
+  };
 
   const redirects = {
     profile: () => navigate('/profile'),
@@ -39,6 +59,11 @@ const DetailsMain = ({trip}) => {
               ) : null}
             </>
           ))}
+        </div>
+      </div>
+      <div className="p-4 flex-1 hidden min-[1220px]:block">
+        <div className="mb-32">
+          <Map trip={trip}/>
         </div>
       </div>
     </div>

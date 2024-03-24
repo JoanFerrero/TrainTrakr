@@ -53,8 +53,8 @@ class TripSerializer(serializers.ModelSerializer):
         trips.save()
 
         return {
-            'exit_station': exit_station.name,
-            'arrival_station': arrival_station.name,
+            'exit_station_id': exit_station.id,
+            'arrival_station_id': arrival_station.id,
             'train': train.name,
             'date': context['date'],
             'time': context['time']
