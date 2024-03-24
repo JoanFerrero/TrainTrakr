@@ -485,7 +485,8 @@ CREATE TABLE public.users_user (
     username character varying(30) NOT NULL,
     email character varying(254) NOT NULL,
     type character varying(10) NOT NULL,
-    type_register character(30)
+    type_register character(30),
+    is_active boolean
 );
 
 
@@ -775,6 +776,9 @@ COPY public.rent_rent (id, date, chair_id, user_id) FROM stdin;
 14	2024-03-06	6	17
 15	2024-03-13	11	17
 16	2024-03-23	9	17
+17	2024-03-24	15	17
+18	2024-03-24	10	17
+19	2024-03-24	7	17
 \.
 
 
@@ -783,16 +787,18 @@ COPY public.rent_rent (id, date, chair_id, user_id) FROM stdin;
 --
 
 COPY public.stations_chair (id, slug, name, image, status, type, chair_number, train_id) FROM stdin;
-7	basica-epepgu	Basica	imagen	activo	basico	1	2
 8	medio-ixh4ju	Medio	imagen	activo	medio	1	2
-10	medio-yc62n4	Medio	imagen	activo	medio	1	3
 12	basica-8cpy3a	Basica	imagen	activo	basico	1	4
 13	medio-e2a56m	Medio	imagen	activo	medio	1	4
 14	premium-r8m1z1	Premium	imagen	activo	premium	1	4
-15	nueva-silla-e1kcj9	nueva silla	imagen	activo	premium	1	5
 6	premium-71yr4a	Premium	imagen	no activo	premium	1	2
 11	premium-3w4x23	Premium	imagen	no activo	premium	1	3
 9	basica-esbcb0	Basica	imagen	no activo	basico	1	3
+15	nueva-silla-e1kcj9	nueva silla	imagen	no activo	premium	1	5
+10	medio-yc62n4	Medio	imagen	no activo	medio	1	3
+7	basica-epepgu	Basica	imagen	no activo	basico	1	2
+16	silla-premium-m6frd3	Silla premium	imange	activo	premium	1	6
+17	silla-basica-1a2jxt	Silla basica	imagen	activo	basico	1	6
 \.
 
 
@@ -821,6 +827,9 @@ COPY public.stations_train (id, slug, name, "desc", image, status) FROM stdin;
 3	tren-cascada-lq0375	Tren cascada	grande	iamgen	no activo
 4	sub-10bdbf	Sub	grande	iamgen	no activo
 5	nuevo-tren-xhrb2o	nuevo tren	ajkdkajd	imagen	no activo
+6	carlos-ywhior	Carlos	Tren Carlos	imagen	no activo
+7	patri-niir3t	Patri	Tren Patri	imagen	no activo
+8	manolo-mzxlou	Manolo	Tren Manolo	imagen	no activo
 \.
 
 
@@ -829,10 +838,13 @@ COPY public.stations_train (id, slug, name, "desc", image, status) FROM stdin;
 --
 
 COPY public.trips_trips (id, date, "time", arrival_station_id, exit_station_id, train_id) FROM stdin;
-4	15/3/2024	2	8	6	3
-5	15/3/2024	2	9	5	4
 6	29/3/2024	2	9	7	5
 3	30/4/2024	2	7	4	2
+4	15/6/2024	2	8	6	3
+5	15/7/2024	2	9	5	4
+7	18/4/2024	1	3	2	6
+8	17/5/2024	2	6	2	7
+9	18/7/2024	4	9	2	8
 \.
 
 
@@ -846,7 +858,7 @@ COPY public.users_profile (id, name, surnames, image, biography, user_id) FROM s
 6	Manolo		https://avatars.dicebear.com/api/adventurer/Manolo.svg		19
 7	Joaasdn		https://avatars.dicebear.com/api/adventurer/Joaasdn.svg		20
 9	Joan Ferrero		https://avatars.dicebear.com/api/adventurer/Joan Ferrero.svg		22
-11	JoanDaw		https://avatars.dicebear.com/api/adventurer/JoanDaw.svg		24
+14	joan		https://avatars.dicebear.com/api/adventurer/joan.svg		27
 \.
 
 
@@ -854,13 +866,13 @@ COPY public.users_profile (id, name, surnames, image, biography, user_id) FROM s
 -- Data for Name: users_user; Type: TABLE DATA; Schema: public; Owner: root
 --
 
-COPY public.users_user (id, password, last_login, is_superuser, uuid, username, email, type, type_register) FROM stdin;
-17	pbkdf2_sha256$720000$eNpdqPSAvBoKvLxMG8tWSR$10a8hAjBYH2sNeipWs2m9pBSYBO5Vj73J3I0zWmHRQ0=	\N	f	9002a1af-b8cd-457e-e30a-b7323ca63b01	Joan	joan1smx@gmail.com	admin	email                         
-18	pbkdf2_sha256$720000$TMZy51rfSXkYkLOD3b7Vid$uOTsB2gwG+VC+U93weTA21DPtInsyzG0kpJ0heL2BFE=	\N	f	e1ea5759-4d0b-cd9b-6bc6-b647f3d3bbf0	carlos	carlos@gmail.com	client	email\n                        
-19	pbkdf2_sha256$720000$9aWMyUnLwEenEBw5Fb4nuN$VOVqSFh839ReZzF+vbBwHpfuSK2+XCgjoustWhSET7M=	\N	f	eff8f0b0-a566-0732-3158-ae7b7a2ad2b7	Manolo	manolo@gmail.com	client	email                         
-20		\N	f	5dfa87f5-5364-168b-5033-0a615860aa2b	Joaasdn	joanasdasmx@gmail.com	client	google                        
-22		\N	f	baabef9b-e653-b24f-d716-82881a4c67c7	Joan Ferrero	joan.ferrero.montiel@gmail.com	client	github                        
-24	pbkdf2_sha256$720000$CGJYxMfXTwq7atlI333G2k$ky9EjZnEm9De2SN47hV+7Mq3DtBKjW0Dve1DBSFHSio=	\N	f	fb665287-4e93-6f29-e58b-f87841feeeee	JoanDaw	joan1daw@gmail.com	client	email                         
+COPY public.users_user (id, password, last_login, is_superuser, uuid, username, email, type, type_register, is_active) FROM stdin;
+18	pbkdf2_sha256$720000$TMZy51rfSXkYkLOD3b7Vid$uOTsB2gwG+VC+U93weTA21DPtInsyzG0kpJ0heL2BFE=	\N	f	e1ea5759-4d0b-cd9b-6bc6-b647f3d3bbf0	carlos	carlos@gmail.com	client	email\n                        	t
+19	pbkdf2_sha256$720000$9aWMyUnLwEenEBw5Fb4nuN$VOVqSFh839ReZzF+vbBwHpfuSK2+XCgjoustWhSET7M=	\N	f	eff8f0b0-a566-0732-3158-ae7b7a2ad2b7	Manolo	manolo@gmail.com	client	email                         	t
+22		\N	f	baabef9b-e653-b24f-d716-82881a4c67c7	Joan Ferrero	joan.ferrero.montiel@gmail.com	client	github                        	t
+20		\N	f	5dfa87f5-5364-168b-5033-0a615860aa2b	Joaasdn	joanasdasmx@gmail.com	client	google                        	t
+17	pbkdf2_sha256$720000$eNpdqPSAvBoKvLxMG8tWSR$10a8hAjBYH2sNeipWs2m9pBSYBO5Vj73J3I0zWmHRQ0=	\N	f	9002a1af-b8cd-457e-e30a-b7323ca63b01	Joan	joan1smx@gmail.com	admin	email                         	t
+27	pbkdf2_sha256$720000$wglYZG97MdGAC9XBbLjXVN$RtDANHH0YxWji7yJ8WOfXozpri/CB9Ei8wS+5ipNHFE=	\N	f	7de8232b-b154-e586-edbf-88929400bb89	joan	joan1daw@gmail.com	client	email                         	t
 \.
 
 
@@ -947,14 +959,14 @@ SELECT pg_catalog.setval('public.incidents_notification_id_seq', 28, true);
 -- Name: rent_rent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.rent_rent_id_seq', 16, true);
+SELECT pg_catalog.setval('public.rent_rent_id_seq', 19, true);
 
 
 --
 -- Name: stations_chair_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.stations_chair_id_seq', 15, true);
+SELECT pg_catalog.setval('public.stations_chair_id_seq', 17, true);
 
 
 --
@@ -968,21 +980,21 @@ SELECT pg_catalog.setval('public.stations_station_id_seq', 9, true);
 -- Name: stations_train_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.stations_train_id_seq', 5, true);
+SELECT pg_catalog.setval('public.stations_train_id_seq', 8, true);
 
 
 --
 -- Name: trips_trips_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.trips_trips_id_seq', 6, true);
+SELECT pg_catalog.setval('public.trips_trips_id_seq', 10, true);
 
 
 --
 -- Name: users_profile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.users_profile_id_seq', 11, true);
+SELECT pg_catalog.setval('public.users_profile_id_seq', 14, true);
 
 
 --
@@ -996,7 +1008,7 @@ SELECT pg_catalog.setval('public.users_user_groups_id_seq', 1, false);
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: root
 --
 
-SELECT pg_catalog.setval('public.users_user_id_seq', 24, true);
+SELECT pg_catalog.setval('public.users_user_id_seq', 27, true);
 
 
 --
