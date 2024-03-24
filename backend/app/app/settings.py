@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'ontibike',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
