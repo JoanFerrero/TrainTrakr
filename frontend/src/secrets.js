@@ -7,7 +7,7 @@ const secrets = {
   messagingSenderId: "280677672616",
   appId: "1:280677672616:web:bf9e3093a98c625830c49d",
   YOUR_TEMPLATE_ID_CONTACT: "template_56foo19",
-  YOUR_TEMPLATE_ID_REGISTER: "template_56foo19",
+  YOUR_TEMPLATE_ID_REGISTER: "template_a88080n",
   YOUR_SERVICE_ID: "service_tpesgrd",
   YOUR_PUBLIC_KEY: "_dMQiJEEgEFA9WCGb",
 }

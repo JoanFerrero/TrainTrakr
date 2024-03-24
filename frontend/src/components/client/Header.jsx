@@ -29,6 +29,7 @@ const Header = () => {
   const redireccion = (side) => {
     navigate('/' + side);
     setShowMenu(false);
+    setIsOpen(false);
   }
 
   useEffect(() => {
@@ -96,7 +97,7 @@ const Header = () => {
           <nav className="sm:hidden mt-2 overflow-hidden z-10" >
             <a onClick={() => redireccion('home')} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Inicio</a>
             <a onClick={() => redireccion('trips')} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Viajes</a>
-            <a onClick={() => redireccion('home')} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Contacto</a>
+            <a onClick={() => redireccion('contact')} className="text-decoration-none block py-2 px-4 text-white hover:bg-gray-700">Contacto</a>
           </nav>
         )}
       </header>

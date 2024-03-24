@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useAuth } from "../../../hooks/useAuth";
 
 const AsideProfile = ({setPage}) => {
+  const { useLogOutUser} = useAuth();
 
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [settingsDropdownOpen, setSettingsDropdownOpen] = useState(false);
@@ -18,6 +20,10 @@ const AsideProfile = ({setPage}) => {
       setProfileDropdownOpen(false);
     }
   };
+
+  const logout = () => {
+    useLogOutUser()
+  }
   
   return (
     <>
@@ -56,6 +62,7 @@ const AsideProfile = ({setPage}) => {
             <div className="mb-4 border-b border-gray-400"></div>
             <div className="mb-4">
               <button
+                onClick={() => logout()}
                 className="flex justify-between items-center w-full px-4 py-2 text-left text-2xl font-semibold focus:outline-none hover:bg-gray-100"
               >
                 Cerrar Sesion

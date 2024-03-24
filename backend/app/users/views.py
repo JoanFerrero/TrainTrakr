@@ -67,6 +67,18 @@ class UserView(viewsets.GenericViewSet):
 
         return Response(serializer)
     
+    def changeActive(self, request):
+
+        user = JSONParser().parse(request)
+
+        serializer_context = {
+            'email': user['email'],
+        }
+
+        UserSerializer.changeActive(context=serializer_context)
+
+        return Response("changeActive END")
+    
 class UserInfoView(viewsets.GenericViewSet):
     permission_classes = (IsAuthenticated ,)
 

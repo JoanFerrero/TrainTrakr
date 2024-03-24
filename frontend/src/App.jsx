@@ -48,6 +48,8 @@ function App() {
   const EditIncidentsPage = React.lazy(() => import('./pages/admin/incidents/EditIncidentsPage'));
   const QRValidation = React.lazy(() => import('./pages/client/QRValidation'));
 
+  const Authenticated = React.lazy(() => import('./pages/client/Authenticated'))
+
   return (
     <Suspense>
       <BrowserRouter>
@@ -64,6 +66,8 @@ function App() {
                           <Route path="/home" element={<HomePage />} />
                           <Route path="/trips" element={<Trips />} />
                           <Route path="/contact" element={<ContactPage />} />
+                          <Route path="/authenticated" element={<Authenticated />} />
+                          <Route path="/authenticated/:email" element={<Authenticated />} />
                           <Route element={<NoAuthGuard />}>
                             <Route path='/login' element={<LoginPage />} />
                             <Route path='/register' element={<RegisterPage />} />

@@ -63,7 +63,6 @@ class UserSerializer(serializers.ModelSerializer):
     def login(context):
         email = context['email']
         password = context['password']
-        type_register = context['type_register']
 
         try:
             user = User.objects.get(email=email)
@@ -73,13 +72,15 @@ class UserSerializer(serializers.ModelSerializer):
         if not user.check_password(password):
             raise serializers.ValidationError('*Wrong email or password.')
         
+        if (user.is_active == False):
+            raise serializers.ValidationError('*Validate user.')
 
         return {
             'user': {
                 'id': user.id,
                 'username': user.username,
                 'email': user.email,
-                'type': user.type
+                'type': user.type,
             },
             'chairs': {},
             'token': user.token,
@@ -103,20 +104,41 @@ class UserSerializer(serializers.ModelSerializer):
             user = User.objects.get(email=email)
 
         except:
-            raise serializers.ValidationError(
-                'Email or password incorrects.'
-            )
+            raise serializers.ValidationError('Email or password incorrects.')
+        
+        if (user.is_active == False):
+            raise serializers.ValidationError('*Validate user.')
 
         return {
             'user': {
                 'id': user.id,
                 'username': user.username,
                 'email': user.email,
-                'type': user.type
+                'type': user.type,
             },
             'chairs': {},
             'token': user.token,
             'ref_token': user.ref_token,
+        }
+    
+    def changeActive(context):
+        email = context['email']
+
+        try:
+            user = User.objects.get(email=email)
+        except:
+            raise serializers.ValidationError('Email or password incorrects.')
+        
+        if (user.is_active == False):
+            user.is_active = True
+            user.save()
+        else:
+            raise exceptions.ValidationError("error")
+
+        return {
+            'user': {
+                'email': user.email,
+            }
         }
     
     def getUser(context):

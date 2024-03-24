@@ -13,7 +13,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8 mb-32">
       <h1 className="text-3xl font-bold mb-4 text-black">Página de Contacto</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

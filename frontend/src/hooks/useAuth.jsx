@@ -5,6 +5,8 @@ import { useContextHook } from "./useContextHook";
 import { useNavigate } from "react-router-dom";
 import JwtService from "../services/JwtService";
 import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import EmailService from "../services/EmailService";
 
 export const useAuth = () => {
 
@@ -104,12 +106,30 @@ export const useAuth = () => {
     AuthService.registerUser(userData)
       .then(({ data, status}) => {
         if (status === 200) {
+          EmailService.sendEmail(data, 'register')
           toast.success("Please check you'r email for continue");
-          navigate('/login');
+          setTimeout(() => {
+            navigate('/login');
+        }, 3000);
         }
     }).catch(e => {
       console.error(e);
       toast.error('Datos incorrecto!');
+    });
+  }, [])
+
+  const changeActive = useCallback(data  => {
+    AuthService.ChangeActive(data)
+      .then(({ dataThen, status }) => {
+        if (status === 200) {
+          Swal.fire('Validacion', 'El usuario esta validado', 'success');
+          setTimeout(() => {
+            navigate('/login');
+          }, 3000);
+        }
+    }).catch(e => {
+      console.error(e);
+      Swal.fire('Validacion', 'El usuario ya esta validado', 'error');
     });
   }, [])
 
@@ -123,5 +143,5 @@ export const useAuth = () => {
     toast.success('Cerrar sesion correcto!!')
   }, [])
 
-  return { useLoginUser, useRegisterUser, useLogOutUser, useIsLoged }
+  return { changeActive, useLoginUser, useRegisterUser, useLogOutUser, useIsLoged }
 }

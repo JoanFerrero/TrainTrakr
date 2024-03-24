@@ -29,6 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email', unique=True)
     type = models.CharField('type', max_length=10, null=False, default='client')
     type_register = models.CharField('type_register', max_length=30, unique=True, null=False)
+    is_active = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
