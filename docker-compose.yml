@@ -16,21 +16,6 @@ services:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - practica_net
-  pgadmin:
-    depends_on:
-      - db
-    image: dpage/pgadmin4
-    container_name: pgadmin4_container_final
-    restart: always
-    ports:
-      - 8888:80
-    environment:
-      PGADMIN_DEFAULT_EMAIL: root@root.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    volumes:
-      - pgadminFinal:/var/lib/pgadmin
-    networks:
-      - practica_net
   backend:
     depends_on:
       - db
@@ -58,7 +43,6 @@ services:
 
 volumes:
   pgVolFinal: {}
-  pgadminFinal: {}
 
 networks:
   practica_net:
