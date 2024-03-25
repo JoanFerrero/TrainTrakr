@@ -3,17 +3,36 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import CardChairs from './CardChairs';
 
 describe('CardChairs component', () => {
-  it('calls setChairSelected when clicked', () => {
-    const setChairSelected = vi.fn();
-    const chair = { type: 'Sample Chair Type' };
-    const trip = { arrival_station: { name: 'Sample Station' }, date: '2024-03-19' };
-    
-    const container = render(<CardChairs chair={chair} setChairSelected={setChairSelected} trip={trip} />);
-    
-    const reservationSpan = container.queryByTestId('spanButton');
 
-    fireEvent.click(reservationSpan);
-        
-    expect(setChairSelected).toHaveBeenCalledTimes(1);
+  const chair = {
+    type: 'Example Chair Type',
+    slug: 'example-chair-slug'
+  };
+
+  const trip = {
+    arrival_station: { name: 'Example Station' },
+    date: '2024-03-25'
+  };
+
+  it('renders component with correct chair details', () => {
+    const { getByText } = render(
+      <CardChairs chair={chair} trip={trip} chairS={chair}/>
+    );
+
+    expect(getByText(`Viaje a ${trip.arrival_station.name}`)).toBeInTheDocument();
+    expect(getByText(`Fecha: ${trip.date}`)).toBeInTheDocument();
+    expect(getByText(`Categoria silla: ${chair.type}`)).toBeInTheDocument();
+  });
+
+  it('clicking on the span button should trigger setChairSelected with correct chair', () => {
+    const setChairSelected = vi.fn();
+    const { getByTestId } = render(
+      <CardChairs chair={chair} trip={trip} setChairSelected={setChairSelected} chairS={chair} />
+    );
+
+    const spanButton = getByTestId('spanButton');
+    fireEvent.click(spanButton);
+
+    expect(setChairSelected).toHaveBeenCalledWith(chair);
   });
 });
