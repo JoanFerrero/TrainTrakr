@@ -33,7 +33,7 @@ const ProfileUser = () => {
         <div className="p-4 flex-1">
           <DataProfile profile={AuthState.user} />
           {page === 'profile' ? (
-            <NumbersProfile NumberNotification={NotificationsState.notifications.filter(notifications => !notifications.seen).length} NumberTrips={rents.length}/>
+            <NumbersProfile NumberNotification={NotificationsState.notifications.filter(notifications => !notifications.seen).length} NumberTrips={rents.length} setPage={useChangePage}/>
           ) : null}
           {page === 'bookings' ? (
             <>

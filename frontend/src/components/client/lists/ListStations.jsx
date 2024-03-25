@@ -31,7 +31,7 @@ const ListStations = ({ itemsPag = 3}) => {
                   <div className="h-1 w-20 bg-indigo-500 rounded"></div>
                 </div>
               </div>
-              <div className="flex flex-wrap -m-4">
+              <div className="flex flex-wrap">
                 {itemsToShow.length !== 0 ? (
                   <>
                     {itemsToShow.map((station) => (
