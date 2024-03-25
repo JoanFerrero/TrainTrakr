@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import EmailService from "../../../services/EmailService";
+import { useNavigate } from "react-router-dom";
 
 const ContactForm = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -10,6 +12,12 @@ const ContactForm = () => {
     e.preventDefault();
 
     EmailService.sendEmail({ email: 'joan1smx@gmail.com ', username: name, email: email, content: message }, "contact")
+
+    setTimeout(() => {
+      navigate('/home');
+    }, 2000);
+    
+    Swal.fire('Enviado!', 'El mensaje a sido enviado.', 'success');
   };
 
   return (
