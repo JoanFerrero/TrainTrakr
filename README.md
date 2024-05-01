@@ -7,7 +7,7 @@ Por [`Joan Ferrero Montiel`](https://github.com/JoanFerrero)
 1. TrainTrakr_Joan
 2. Instalar
 3. Tecnologías
-4. Desplegamiento
+4. Despliegue
 
 # TrainTrakr_Joan! 
 
@@ -109,7 +109,7 @@ Lista de tecnologías utilizadas en este proyecto:
 
 - PostgreSQL
 
-# Desplegamiento
+# Despliegue
 
 Nos situaremos en la raíz del proyecto con el siguiente comando.
 
